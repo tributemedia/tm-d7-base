@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the TM Content Types feature.
+ */
+
+include_once 'tm_content_types.features.inc';

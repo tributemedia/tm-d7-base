@@ -1,0 +1,6 @@
+name = Company Information Fields
+description = Provides fields on the site information form for the user to enter company information that will be included in the footer.
+package = Other
+core = 7.x
+version 7.x-1.0-dev
+files[] = company_info.module

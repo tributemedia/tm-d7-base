@@ -1,0 +1,349 @@
+/* ================== */
+/* = General Styles = */
+/* ================== */
+
+body {
+	background:#777;
+}
+
+.page, #header-wrapper {
+	background:#fff;
+	border-color:#444;
+}
+
+.region-header {
+	/*width:60%; */  /* creating a problem for the float:right*/
+	float: right;
+}
+
+a {
+	color:#339FC6;
+}
+
+a:hover {
+	color:#3686A0;
+}
+
+.dark-region a {
+	color:#b4e7f8; /*BED7E0*/
+}
+
+.content-wrapper {
+	color:#444;
+}
+
+.content-wrapper h1 {
+	color:#111;
+}
+
+button, .form-submit, a.btn, a.button, .button {
+	background: #1C75BC;
+}
+
+button:hover, .form-submit:hover, a.btn:hover, a.button:hover, .button:hover {
+	background: #4CA0E0;
+}
+
+.button.two {
+	background-color:#aa0000;
+}
+
+.button.two:hover {
+	background-color:#D60000;
+}
+
+.button a {
+	color:#fff;
+}
+
+.shrink .shrinking-icon {
+    left: 10px;
+    opacity: 1;
+    top: 11px;
+    z-index: 1000;
+}
+
+article.node .field-name-field-page-tags {
+	display:none;
+}
+
+article footer {
+	padding:0px;
+}
+
+article footer ul.links.inline {
+	width:100%;
+	float:none;
+	width:100%;
+	display:block;
+	clear:both;
+}
+
+/* ========================= */
+/* = Secondary Menu Styles = */
+/* ========================= */
+
+.secondary-menu-wrapper {
+	float:right;
+	text-align:right;
+}
+
+ul#secondary-menu {
+	float:left;
+	padding:0px;
+	margin:0px;
+}
+
+ul#secondary-menu li {
+	display:inline;
+	list-style:none;
+}
+
+ul#secondary-menu li a {
+	color:#304b9e !important;
+	display:inline-block;
+	padding:10px;
+	border-bottom:0px solid transparent;
+	-webkit-transition: all 0.2s ease-in-out; 
+	-moz-transition: all 0.2s ease-in-out; 
+	-o-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+ul#secondary-menu li a:hover {
+	color:#304b9e !important;
+	border-bottom:3px solid #304b9e;
+	padding:10px;
+	-webkit-transition: all 0.2s ease-in-out; 
+	-moz-transition: all 0.2s ease-in-out; 
+	-o-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+#block-block-2 {
+	clear:both !important;
+	height:40px;
+}
+
+ul#social-links {
+	float:left;
+	padding: 5px 0px 0px 0px;
+	margin:0px;
+}
+
+ul#social-links  li {
+	display:inline;
+	list-style:none;
+}
+
+/* ================= */
+/* = Header Styles = */
+/* ================= */
+
+/* ================================= */
+/* = Primary Menu/Mega Menu Styles = */
+/* ================================= */
+
+#main-navigation-wrapper {
+	background-color:#1C75BC;
+}
+
+#main-navigation-wrapper a {
+	color:#fff;
+}
+
+#mega-menu-wrapper {
+	background-color:#1C75BC;
+}
+
+ul.mega-menu {
+	background-color:transparent;
+}
+
+ul.mega-menu ul {
+	background-color:#1C75BC;
+}
+
+ul.mega-menu a {
+	color:#fff;
+}
+
+ul.mega-menu a:hover {
+	color:#fff;
+}
+
+ul.mega-menu ul {
+	width:325px;
+}
+
+ul.mega-menu ul.wide {
+	left:-100px;
+	padding-left:200px;
+	width:500px;
+}
+
+/* ====================== */
+/* = Mobile Menu Styles = */
+/* ====================== */
+
+ul.side-nav {
+	background-color:#1C75BC;
+}
+
+ul.side-nav .side-nav-header ul.mobile-secondary li a {
+	color:#fff;
+}
+
+ul.side-nav .side-nav-footer, ul.side-nav .side-nav-footer a, ul.side-nav .side-nav-footer a:hover {
+	color:#fff;
+}
+
+/* ========================= */
+/* = Preface Region Styles = */
+/* ========================= */
+
+/* ========================= */
+/* = Content Region Styles = */
+/* ========================= */
+
+/* ===================== */
+/* = Postscript Styles = */
+/* ===================== */
+
+/* ================= */
+/* = Footer Styles = */
+/* ================= */
+
+footer {
+	padding:20px;
+}
+
+.footer-region {
+	display:block;
+	clear:both;
+}
+
+#copyright-line {
+	float:none;
+	padding-right:20px;
+	padding-left:20px;
+}
+
+#copyright-line div {
+	text-align:center;
+	display:block;
+	width:100%;
+}
+
+.connect {
+	text-align:center;
+}
+
+.connect .pipe {
+	display:block !important;
+}
+
+.connect div {
+	display:inline !important;
+	width:auto;
+	text-align:left;
+}
+
+#powered-by {
+	width:100%;
+	text-align:center;
+	display:block;
+	padding-left:20px;
+	padding-right:20px;
+}
+
+.pipe {
+	display:none !important;
+}
+
+/* ================================== */
+/* = Product Catalog General Styles = */
+/* ================================== */
+
+.page-product-catalog h1.page-header.title {
+	padding-bottom:20px;
+}
+
+.page-product-catalog .view-product-landing-page fieldset {
+	padding-bottom:0px;
+}
+
+.page-product-catalog .view-product-landing-page .fieldset-wrapper {
+	margin-bottom:0px;
+}
+
+.page-product-catalog .view-product-landing-page #fieldset-id legend {
+	width:100%;
+    background: #333333;
+    text-transform: uppercase;
+    padding: 15px 10px 0px 10px;
+}
+
+.page-product-catalog .view-product-landing-page #fieldset-id.collapsible.collapse-processed.collapsed legend a {
+    padding: 0px 20px 15px 0px;
+}
+
+.page-product-catalog .fieldset-legend span.summary {
+    font-size: 0px;
+}
+
+html.js .page-product-catalog fieldset.collapsed {
+	margin-bottom:100px;
+}
+
+html.js fieldset.collapsed .fieldset-legend {
+    background-position: 5px 35%;
+}
+
+html.js fieldset.collapsible .fieldset-legend {
+    background-position: 5px 25%;
+    padding-left: 25px;
+}
+
+.view-product-landing-page #fieldset-id.collapsible.collapse-processed legend a {
+    padding-bottom: 15px;
+}
+
+.page-product-catalog .views-exposed-form .views-exposed-widget .form-submit {
+    margin-top: 16px;
+}
+
+/* ================================== */
+/* =     Media Queries              = */
+/* ================================== */
+
+
+@media only screen and (max-width : 600px) {
+}
+
+@media only screen and (min-width : 601px) {
+}
+
+@media only screen and (min-width : 993px) {
+	#copyright-line {
+		float:left;
+	}
+	#powered-by {
+		width:auto;
+		text-align:right;
+	}
+	#copyright-line div {
+		display:inline;
+		width:auto;
+		text-align:left;
+	}
+	.pipe {
+		display:inline !important;
+	}
+}
+
+@media only screen and (max-width: 1080px) {
+	ul#secondary-menu {
+		float:none;
+	}
+}
