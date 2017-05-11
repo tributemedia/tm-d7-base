@@ -1,0 +1,832 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * Provides configuration page to choose a menu to pull items from and create a custom menu using those items.
+ */
+
+// =================================
+// = Implements hook_permission(). =
+// =================================
+
+function better_mm_permission() {
+  $permission = array(
+    'administer better mm' => array(
+      'title' => t('Administer Better Mega Menu'),
+      'description' => t('Configure Better Mega Menu Settings.'),
+    ),
+  );
+  return $permission;
+}
+
+// ===========================
+// = Implements hook_menu(). =
+// ===========================
+
+function better_mm_menu() {
+  $items['admin/structure/better_mm'] = array(
+    'title' => t('Better Mega Menu Settings'),
+    'description' => t('Configure Better Mega Menu Settings.'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('better_mm_admin_settings'),
+    'access arguments' => array('administer better mm'),
+  );
+  return $items;
+}
+
+// =================================
+// = Implements hook_form_alter(). =
+// =================================
+
+function better_mm_form_alter(&$form, &$form_state, $form_id) {
+  // Make sure new items are added to the BMM menu.
+  if ($form_id == 'menu_edit_item') { // adding item or editing existing item.
+    $form['#submit'][] = 'better_mm_add_link_submit';
+  }
+  if ($form_id == 'menu_overview_form') { // rearanging or disabling item.
+    $form['#submit'][] = 'better_mm_menu_overview_submit';
+  }
+  if ($form_id == 'menu_item_delete_form') { // deleting item
+    $form['#submit'][] = 'better_mm_delete_menu_item_submit';
+  }
+}
+
+/**********************************************************************************/
+/* Code from https://www.drupal.org/node/1709914#comment-10753712                 */
+/* Fixes PHP notice "Trying to get property of non-object in node_page_title()"   */
+/**********************************************************************************/
+// ================================
+// = Implements hook_menu_alter() =
+// ================================
+
+function better_mm_menu_alter(&$items) {
+  $items['node/%node']['title callback'] = 'better_mm_page_title';
+}
+
+// ==============================================
+// = Helper function to replace node_page_title =
+// ==============================================
+
+function better_mm_page_title($node) {
+  if (!$node) {
+    return '';
+  }
+
+  if (is_numeric($node)) {
+    $node = node_load($node);
+  }
+  return !empty($node->title) ? $node->title : '';
+}
+
+/* End code from above */
+/*******************************************************************************************/
+
+// ================================
+// = Construct admin settins form =
+// ================================
+
+function better_mm_admin_settings($form, &$form_state) {
+  $site_name = variable_get('site_name', 'Site Name');
+  $menu_name = !empty($form_state['values']['bmm_menu']) ? $form_state['values']['bmm_menu'] : 'main-menu';
+  $help_text = '<div id="better-mm-help-text">';
+  $help_text .= '<p>To add to, or remove items from the menu, go to the <a href="/admin/structure/menu/manage/';
+  $help_text .= $menu_name . '">Manage Menus</a> page for the chosen menu.</p>';
+  $help_text .= '<strong>There are two blocks that will need to be configured for your Better Mega Menu.</strong>';
+  $help_text .= '<ol><li>"Better Mega Menu Block" can be placed in any desirable region of your site, but typically, it is placed in the "Mega menu" region.</li>';
+  $help_text .= '<li>"Better Mega Menu Mobile Block" should be placed in the "Footer" region.</li></ol>';
+  $help_text .= '<strong>There are three types of menu items to choose from.</strong>';
+  $help_text .= '<ol><li>Standard: Will provide a standard menu item with a simple drop down if any children exist. Note: Children under the "Home" menu item will not be rendered.</li>';
+  $help_text .= '<li>Wide: For use with an item that has children. The drop down will include a background image.</li>';
+  $help_text .= '<li>Advanced: Works much like a Mega Menu item. You will provide the HTML for the drop down "block" of the item.</li></ol>';
+  $help_text .= '</div>';
+  $phone = '<div class="tel"><a href="tel:+12084890123">208.489.0123</a></div>';
+  $footer = '<div class="side-nav-footer center-align">&copy;' . date('Y') . ' ' . $site_name . '</div>';
+  $settings_default = array(
+    'style' => 'standard',
+    'style_settings' => array(
+      'nolink' => '',
+      'wide_setting' => '',
+      'advanced_setting' => array(
+        'value' => '',
+        'format' => 'full_html',
+      ),
+    ),
+  );
+  $menu_settings_default = !empty($form_state['values']['bmm_menu_items_settings']) ? 
+    $form_state['values']['bmm_menu_items_settings'] : '';
+  $mobile_settings = variable_get('bmm_mobile_menu_settings');
+  $mobile_default = !empty($mobile_settings['below_mobile_nav']['value']) ? 
+    $mobile_settings['below_mobile_nav']['value'] : $phone;
+  $footer_default = !empty($mobile_settings['bmm_menu_mobile_footer']['value']) ? 
+    $mobile_settings['bmm_menu_mobile_footer']['value'] : $footer;
+  $wide_access = FALSE;
+  $adv_access = FALSE;
+  
+  $form['#tree'] = TRUE;
+  $form['bmm_menu'] = array(
+    '#title' => t('Menu'),
+    '#type' => 'select',
+    '#options' => better_mm_get_options('menus'),
+    '#description' => t('Select the menu you wish to configure.'),
+    '#default_value' => variable_get('bmm_menu', 'main-menu'),
+    '#ajax' => array(
+      'callback' => 'better_mm_menu_items_ajax_callback',
+      'wrapper' => 'bmm-menu-items',
+      'method' => 'replace',
+      'effect' => 'fade',
+    ),
+  );
+  $form['bmm_menu_items_settings'] = array(
+    '#title' => t("Menu Items"),
+    '#prefix' => '<div id="bmm-menu-items">',
+    '#suffix' => '</div>',
+    '#type' => 'fieldset',
+  );
+  $form['bmm_menu_items_settings']['description_fieldset'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Help'),
+    '#collapsible' => TRUE,
+  );
+  $form['bmm_menu_items_settings']['description_fieldset']['description'] = array(
+    '#type' => 'markup',
+    '#markup' => $help_text,
+  );
+  
+  $menu_selection = !empty($form_state['values']['bmm_menu']) ? $form_state['values']['bmm_menu'] : 'main-menu';
+  $menu_items = menu_navigation_links($menu_selection);
+  
+  $form['bmm_menu_items'] = array(
+    '#type' => 'value',
+    '#value' => $menu_items,
+  );
+  
+  $menu_settings = variable_get('bmm_menu_items_settings', $menu_settings_default);
+  
+  foreach ($menu_items as $menu_item) {
+    // menu item variables
+    $item_title = $menu_item['title'];
+    $item_name = str_replace(' ', '-', strtolower($item_title));
+    $item_settings = !empty($menu_settings) ? $menu_settings[$item_name] : $settings_default;
+    $adv_default = $item_settings['style_settings']['advanced_setting']['value'];
+        
+    // Settings fields for each menu item.
+    $form['bmm_menu_items_settings'][$item_name] = array(
+      '#type' => 'fieldset',
+      '#title' => t($item_title),
+    );
+    $form['bmm_menu_items_settings'][$item_name]['style'] = array(
+      '#type' => 'select',
+      '#title' => t('Menu Item Style'),
+      '#options' => better_mm_get_options('styles'),
+      '#default_value' => $item_settings['style'],
+      '#prefix' => '<div id="bmm-menu-item-' . $item_name . '-settings" class="bmm-menu-item-settings">',
+      '#suffix' => '</div>',
+      '#ajax' => array(
+        'callback' => 'better_mm_style_ajax_callback',
+        'wrapper' => 'bmm-style-settings-' . $item_name,
+        'method' => 'replace',
+        'effect' => 'fade',
+      ),
+    );
+    $form['bmm_menu_items_settings'][$item_name]['style_settings'] = array(
+      '#type' => 'fieldset',
+      '#prefix' => '<div id="bmm-style-settings-' . $item_name . '" class="bmm-style-settings">',
+      '#suffix' => '</div>',
+    );
+    $nolink_default = $item_settings['style_settings']['nolink'];
+    $saved_style = $item_settings['style'];
+    $bmm_item_style = !empty($form_state['triggering_element']['#value']) ? 
+      $form_state['triggering_element']['#value'] : $saved_style;
+    
+    if (!empty($form_state['triggering_element']['#value'])) {
+      if ($form_state['triggering_element']['#value'] == 'Upload' || 
+          $form_state['triggering_element']['#value'] == 'Remove') {
+        $bmm_item_style = 'wide';
+      }
+    }
+    if ($bmm_item_style == 'standard') {
+      $wide_access = FALSE;
+      $adv_access = FALSE;
+    }
+    if ($bmm_item_style == 'wide') {
+      $wide_access = TRUE;
+      $adv_access = FALSE;
+    }
+    if ($bmm_item_style == 'advanced') {
+      $adv_access = TRUE;
+      $wide_access = FALSE;
+    }
+    
+    $form['bmm_menu_items_settings'][$item_name]['style_settings']['nolink'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('No link'),
+      '#description' => t('Check this box to remove the link on this item.'),
+      '#default_value' => $nolink_default,
+    );
+    $form['bmm_menu_items_settings'][$item_name]['style_settings']['wide_setting'] = array(
+      '#access' => $wide_access,
+      '#type' => 'managed_file',
+      '#title' => t('Image Upload'),
+      '#description' => t('For best results, select an image that is at least @dimensionspx wide. 
+        Larger images can be uploaded to create a full image background in the drop down. 
+        Max file size: @filesize. Allowed Extensions: @extensions',
+      array(
+        '@dimensions' => '200',
+        '@filesize' => format_size(file_upload_max_size()),
+        '@extensions' => 'png jpg jpeg',
+      )),
+      '#upload_validators' => array(
+        'file_validate_extensions' => array('png jpg jpeg'),
+      ),
+      '#upload_location' => 'public://menu_images/',
+      '#default_value' => $item_settings['style_settings']['wide_setting'],
+    );
+    $form['bmm_menu_items_settings'][$item_name]['style_settings']['advanced_setting'] = array(
+      '#access' => $adv_access,
+      '#type' => 'text_format',
+      '#title' => t('Advanced Menu Item Code'),
+      '#description' => t('Add html code for Advanced Menu block, here'),
+      '#default_value' => $adv_default,
+      '#format' => 'full_html',
+      '#rows' => 10,
+    );
+  }
+  $form['bmm_mobile_menu_settings'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Mobile Menu Settings'),
+  );
+  $form['bmm_mobile_menu_settings']['below_mobile_nav'] = array(
+    '#type' => 'text_format',
+    '#title' => t('Content Below Mobile Navigation Button'),
+    '#description' => t('Enter content you want displayed under the mobile navigation button. Usually this would be a phone number.'),
+    '#default_value' => $mobile_default,
+    '#format' => 'html_only',
+  );
+  $form['bmm_mobile_menu_settings']['secondary_items_settings'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Mobile Secondary Items'),
+    '#description' => t('Add up to five secondary menu items, to display in the header area of the mobile menu.'),
+    '#collapsible' => TRUE,
+  );
+  
+  $secondary_items = $mobile_settings['secondary_items_settings'];
+  
+  for ($i = 1; $i <= 5; $i++) {
+    if (!empty($secondary_items['secondary_item'][$i]['href'])) {
+      $collapsed = FALSE;
+    } else {
+      $collapsed = TRUE;
+    }
+    $form['bmm_mobile_menu_settings']['secondary_items_settings']['secondary_item'][$i] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Secondary Item ' . $i),
+      '#collapsible' => TRUE,
+      '#collapsed' => $collapsed,
+    );
+    $form['bmm_mobile_menu_settings']['secondary_items_settings']['secondary_item'][$i]['title'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Item Title'),
+      '#description' => t('Leave blank if adding a class for an icon.'),
+      '#default_value' => $secondary_items['secondary_item'][$i]['title'],
+    );
+    $form['bmm_mobile_menu_settings']['secondary_items_settings']['secondary_item'][$i]['href'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Item URL'),
+      '#description' => t('The path for this menu link. 
+        This can be an internal Drupal path such as %add-node or an external URL such as %drupal. 
+        Enter %front to link to the front page.', array(
+          '%front' => '<front>', 
+          '%add-node' => 'node/add', 
+          '%drupal' => 'http://drupal.org',
+        )),
+      '#default_value' => $secondary_items['secondary_item'][$i]['href'],  
+    );
+    $form['bmm_mobile_menu_settings']['secondary_items_settings']['secondary_item'][$i]['class'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Item Class'),
+      '#description' => t('Enter any classes you want added to this menu item.'),
+      '#default_value' => $secondary_items['secondary_item'][$i]['class'],
+    );
+  }
+  $form['bmm_mobile_menu_settings']['bmm_menu_mobile_footer'] = array(
+    '#type' => 'text_format',
+    '#title' => t('Mobile Menu Footer Content'),
+    '#description' => t('Enter content you want displayed under the mobile menu.'),
+    '#default_value' => $footer_default,
+    '#format' => 'full_html',
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save Configuration'),
+    '#submit' => array('better_mm_admin_settings_submit'),
+  );
+  
+  return $form;
+}
+
+// ==================================================
+// = Ajax callback for menu items of selected menu. =
+// ==================================================
+
+function better_mm_menu_items_ajax_callback($form, $form_state) {
+  return $form['bmm_menu_items_settings'];
+}
+
+// =======================================
+// = Ajax callback for menu items style. =
+// =======================================
+
+function better_mm_style_ajax_callback($form, $form_state) {
+  $index = $form_state['triggering_element']['#array_parents'];  
+  return $form[$index[0]][$index[1]]['style_settings'];
+}
+
+// ==============================
+// = Admin form submit handler =
+// ==============================
+
+function better_mm_admin_settings_submit(&$form, &$form_state) {
+  // Set variables
+  variable_set('bmm_menu', $form_state['values']['bmm_menu']);
+  variable_set('bmm_menu_items', $form_state['values']['bmm_menu_items']);
+  variable_set('bmm_menu_items_settings', $form_state['values']['bmm_menu_items_settings']);
+  variable_set('bmm_mobile_menu_settings', $form_state['values']['bmm_mobile_menu_settings']);
+  
+  $menu_settings = variable_get('bmm_menu_items_settings');
+  $mobile_settings = variable_get('bmm_mobile_menu_settings');
+  $menu_items = variable_get('bmm_menu_items');
+    
+  // Build HTML for blocks
+  $below_mobile_nav = $mobile_settings['below_mobile_nav']['value'];
+  $mobile_footer = $mobile_settings['bmm_menu_mobile_footer']['value'];
+  $key = 0;
+  $html = '<ul class="mega-menu mega-level-1 first hide-on-med-and-down">';
+  $mobile_html = '<ul id="nav-mobile" class="side-nav">';
+  $mobile_html .= better_mm_mobile_secondary_html($mobile_settings);
+  $mobile_html .= '<ul class="main-menu-navigation">';
+  
+  if (!empty($menu_items)) {
+    foreach ($menu_items as $menu_item) {
+      $item_name = str_replace(' ', '-', strtolower($menu_item['title']));
+      $link_attributes = $menu_item['attributes'];
+      $item_attributes = $menu_item['item_attributes'];
+      $style = $menu_settings[$item_name]['style'];
+      $nolink = $menu_settings[$item_name]['style_settings']['nolink'];
+      $fid = $menu_settings[$item_name]['style_settings']['wide_setting'];
+      $adv_content = $menu_settings[$item_name]['style_settings']['advanced_setting']['value'];
+      $children = better_mm_get_children($menu_item);
+      $l1_class = better_mm_get_li_class($key, $menu_items);
+      $child_class = better_mm_get_child_class($children, $style);
+      $item_classes = $item_attributes['class'];
+      $class_list = $item_classes . $l1_class . $child_class;
+      $item_id = $item_attributes['id'];
+            
+      if ($menu_item['href'] == '<front>') {
+        $url = url('<front>');
+      } elseif ((strpos($menu_item['href'], 'http') === 0) || 
+                (strpos($menu_item['href'], 'https') === 0)) {
+        $url = $menu_item['href'];
+      } else {
+        $url = '/' . drupal_get_path_alias($menu_item['href']);
+      }
+      
+      // If a file has been uploaded, set file status to permanent.
+      if (is_numeric($fid) && $fid != 0) {
+        $item = menu_get_item($menu_item['href']);
+        $mlid = db_select('menu_links' , 'ml')
+          ->condition('ml.link_path' , $item['href'])
+          ->fields('ml' , array('mlid'))
+          ->execute()
+          ->fetchField();
+        $file = file_load($fid);
+        $file->status = FILE_STATUS_PERMANENT;
+        file_save($file);
+        file_usage_add($file, 'better_mm', 'menu-item', $mlid);
+      }
+      
+      $html .= '<li ';
+      if ($item_id) {
+        $html .= 'id="' . $item_id . '" ';
+      }
+      $html .= 'class="' . $class_list . '">';
+      
+      $mobile_html .= '<li ';
+      if ($item_id) {
+        $mobile_html .= 'id="' . $item_id . '" ';
+      }
+      $mobile_html .= 'class="' . $class_list . '">';
+      
+      if ($nolink) {
+        $link_attributes['class'][] = 'no-link';
+        $html .= l($menu_item['title'], $url, array('attributes' => $link_attributes));
+        $mobile_html .= l($menu_item['title'], $url, array('attributes' => $link_attributes));
+      }
+      
+      if (!$nolink) {
+        $html .= l($menu_item['title'], $url, array('attributes' => $link_attributes));
+        $mobile_html .= l($menu_item['title'], $url, array('attributes' => $link_attributes));
+      }
+      
+      if ($style == 'advanced') {
+        // Generate HTML for advanced item drop down.
+        if (!empty($adv_content)) {
+          $html .= '<ul class="mega-level-2 ' . $style . '">';
+          $html .= '<div class="inner row">' . $adv_content . '</div> <!-- end inner row -->';
+          $html .= '</ul>';
+        }
+        $html .= '</li>';
+      }
+      if (($style == 'wide') || ($style == 'standard')) {
+        // Generate HTMl for the children of wide or standard items.
+        $html .= better_mm_menu_item_tree($style, $children, $fid);
+      }
+      $mobile_html .= better_mm_menu_item_tree($style, $children, $fid, TRUE);
+      $key++;
+    } // foreach menu_item
+    $html .= '</ul>';
+    $mobile_html .= '</ul>' . $mobile_footer;
+    $mobile_html .= '</ul>';
+    // Add mobile nav button.
+    $html .= '<span class="nav-button valign-wrapper hide-on-large-only">';
+    $html .= '<div class="valign">';
+    $html .= '<a href="#" data-activates="nav-mobile" class="button-collapse">';
+    $html .= '<i class="material-icons">menu</i><span class="menu-text">menu</span></a>';
+    // Add mobile code below mobile nav button.
+    $html .= $below_mobile_nav . '</div></span>';
+  }
+  variable_set('bmm_block_content', $html);
+  variable_set('bmm_mobile_block_content', $mobile_html);
+}
+
+// ===========================
+// = Add link submit handler =
+// ===========================
+
+function better_mm_add_link_submit(&$form, &$form_state) {
+  $menu_name = $form_state['values']['menu_name'];
+  $bmm = variable_get('bmm_menu', '');
+  if ($menu_name == $bmm) {
+    $bmm_block_content = better_mm_get_block_content($bmm);
+    variable_set('bmm_block_content', $bmm_block_content['html']);
+    variable_set('bmm_mobile_block_content', $bmm_block_content['mobile']);
+  }
+}
+
+// =============================================
+// = Menu Overview Form custom submit handler. =
+// =============================================
+
+function better_mm_menu_overview_submit(&$form, &$form_state) {
+  $menu_name = $form_state['complete form']['#menu']['menu_name'];
+  $bmm = variable_get('bmm_menu', '');
+  if ($menu_name == $bmm) {
+    $bmm_block_content = better_mm_get_block_content($bmm);
+    variable_set('bmm_block_content', $bmm_block_content['html']);
+    variable_set('bmm_mobile_block_content', $bmm_block_content['mobile']);
+  }
+}
+
+// ===============================================
+// = Menu Item Delete form custom submit handler =
+// ===============================================
+
+function better_mm_delete_menu_item_submit(&$form, &$form_state) {
+  $menu_name = $form_state['complete form']['#item']['menu_name'];
+  $bmm = variable_get('bmm_menu', '');
+  if ($menu_name == $bmm) {
+    $bmm_block_content = better_mm_get_block_content($bmm);
+    variable_set('bmm_block_content', $bmm_block_content['html']);
+    variable_set('bmm_mobile_block_content', $bmm_block_content['mobile']);
+  }
+}
+
+// =================================================================================
+// = Generate block content after changing menu links from the Manage Menus pages. =
+// =================================================================================
+
+function better_mm_get_block_content($menu_name) {
+  $menu_settings = variable_get('bmm_menu_items_settings', '');
+  $mobile_settings = variable_get('bmm_mobile_menu_settings', '');
+  $below_mobile_nav = $mobile_settings['below_mobile_nav']['value'];
+  $mobile_footer = $mobile_settings['bmm_menu_mobile_footer']['value'];
+  $key = 0;
+  $html = '<ul class="mega-menu mega-level-1 first hide-on-med-and-down">';
+  $mobile_html = '<ul id="nav-mobile" class="side-nav">';
+  $mobile_html .= better_mm_mobile_secondary_html($mobile_settings);
+  $mobile_html .= '<ul class="main-menu-navigation">';
+  $menu_items = menu_navigation_links($menu_name);
+  foreach ($menu_items as $menu_item) {
+    $item_title = $menu_item['title'];
+    $item_name = str_replace(' ', '-', strtolower($item_title));
+    $link_attributes = $menu_item['attributes'];
+    $item_attributes = $menu_item['item_attributes'];
+    $item_style = !empty($menu_settings[$item_name]['style']) ? 
+      $menu_settings[$item_name]['style'] : 'standard';
+    $item_nolink = !empty($menu_settings[$item_name]['style_settings']['nolink']) ? 
+      $menu_settings[$item_name]['style_settings']['nolink'] : 0;
+    $fid = !empty($menu_settings[$item_name]['style_settings']['wide_setting']) ?
+      $menu_settings[$item_name]['style_settings']['wide_setting'] : 0;
+    $children = better_mm_get_children($menu_item);
+    $l1_class = better_mm_get_li_class($key, $menu_items);
+    $child_class = better_mm_get_child_class($children, $item_style);
+    $item_classes = $item_attributes['class'];
+    $class_list = $item_classes . $l1_class . $child_class;
+    $item_id = $item_attributes['id'];
+    
+    if ($menu_item['href'] == '<front>') {
+      $url = url('<front>');
+    } elseif (strpos($menu_item['href'], 'http') === 0) {
+      $url = $menu_item['href'];
+    } else {
+      $url = '/' . drupal_get_path_alias($menu_item['href']);
+    }
+    
+    $html .= '<li ';
+    if ($item_id) {
+      $html .= 'id="' . $item_id . '" ';
+    }
+    $html .= 'class="' . $class_list . '">';
+    
+    $mobile_html .= '<li ';
+    if ($item_id) {
+      $mobile_html .= 'id="' . $item_id . '" ';
+    }
+    $mobile_html .= 'class="' . $class_list . '">';
+    
+    if ($item_nolink) {
+      $link_attributes['class'][] = 'no-link';
+      $html .= l($menu_item['title'], $url, array('attributes' => $link_attributes));
+      $mobile_html .= l($menu_item['title'], $url, array('attributes' => $link_attributes));
+    }
+    
+    if (!$item_nolink) {
+      $html .= l($menu_item['title'], $url, array('attributes' => $link_attributes));
+      $mobile_html .= l($menu_item['title'], $url, array('attributes' => $link_attributes));
+    }
+    
+    if ($item_style == 'advanced') {
+      if (!empty($menu_settings[$item_name]['style_settings']['advanced_setting']['value'])) {
+        $html .= '<ul class="mega-level-2 ' . $item_style . '">';
+        $html .= '<div class="inner row">' 
+          . $menu_settings[$item_name]['style_settings']['advanced_setting']['value'] 
+          . '</div> <!-- end inner row -->';
+        $html .= '</ul>';
+      }
+      $html .= '</li>';
+    }
+    if ($item_style == 'wide' || $item_style == 'standard') {
+      $html .= better_mm_menu_item_tree($item_style, $children, $fid);
+    }
+    $mobile_html .= better_mm_menu_item_tree($item_style, $children, $fid, TRUE);
+    $key++;
+  } // foreach menu_item
+  $html .= '</ul>';
+  $mobile_html .= $mobile_footer;
+  $mobile_html .= '</ul>';
+  // Add mobile nav button.
+  $html .= '<span class="nav-button valign-wrapper hide-on-large-only">';
+  $html .= '<div class="valign">';
+  $html .= '<a href="#" data-activates="nav-mobile" class="button-collapse">';
+  $html .= '<i class="material-icons">menu</i><span class="menu-text">menu</span></a>';
+  // Add mobile code below mobile nav button.
+  $html .= $below_mobile_nav . '</div></span>';
+  
+  return array('html' => $html, 'mobile' => $mobile_html);
+}
+
+// ==================================================
+// = Get list of options for select list form item. =
+// ==================================================
+
+function better_mm_get_options($item) {
+  if ($item == 'menus') {
+    $options = menu_get_menus();
+  }
+  
+  if ($item == 'styles') {
+    $options = array(
+      'standard' => 'Standard',
+      'wide' => 'Wide',
+      'advanced' => 'Advanced',
+    );  
+  }
+  return $options;
+}
+
+// ==========================
+// = Get menu item children =
+// ==========================
+
+function better_mm_get_children($menu_item) {
+  if ($menu_item['href'] == '<front>') {
+    $path = url('<front>');
+  } else {
+    $path = $menu_item['href'];
+  }
+  $parent = menu_link_get_preferred($path);
+  $parameters = array(
+  	'active_trail' => array($parent['plid']),
+  	'only_active_trail' => FALSE,
+  	'min_depth' => $parent['depth']+1,
+  	'max_depth' => $parent['depth']+1,
+  	'conditions' => array('plid' => $parent['mlid']),
+  );
+  $children = menu_build_tree($parent['menu_name'], $parameters);
+  
+  if (!empty($children)) {
+    $active_children = array();
+    foreach ($children as $key => $child) {
+      if ($child['link']['hidden'] == 1) {
+        $child = NULL;
+      }
+      if ($child != NULL) {
+        $active_children[$key] = $child;
+      }
+    }
+    return $active_children;
+  }
+  return;
+}
+
+// ===================================
+// = Get the class for the <li> item =
+// ===================================
+
+function better_mm_get_li_class($key, $array) {
+  $last = count($array) - 1;
+  
+  if ($key == 0) {
+    return ' first';
+  }
+  
+  if ($key == $last) {
+    return ' last';
+  }
+  
+  if ($key & 1) {
+    return ' even';
+  } else {
+    return ' odd';
+  }
+}
+
+// =================================
+// = Get child class for <li> item =
+// =================================
+
+function better_mm_get_child_class($children, $style = 'standard') {
+  if ($style == 'advanced') {
+    return ' unset-child';
+  }
+  
+  if (!empty($children)) {
+    return ' has-children';
+  } else {
+    return ' no-children';
+  }
+}
+
+// =============================
+// = Build menu item tree HTML =
+// =============================
+
+function better_mm_menu_item_tree($style, $children, $fid, $mobile = FALSE) {
+  $result = '';
+  if (!$mobile) {
+    $file = new stdClass();
+    $inline_css = '';
+    if ($style == 'wide' && !empty($fid)) {
+      if (is_numeric($fid)) {
+        $file = file_load($fid);
+        $uri = $file->uri;
+        $file_url = file_create_url($uri);
+        $inline_css = 'background-image: url(' . $file_url . '); background-repeat: no-repeat; background-position: 0 0;';
+      }
+    }
+    $ul_class = 'mega-level-';
+  }
+  if ($mobile) {
+    $ul_class = 'mobile-level-';
+  }
+  if (!empty($children)) {
+    $key2 = 0;
+    if ($mobile) {
+      $result .= '<div class="plus-button"></div>';
+    }
+    $result .= '<ul class="' . $ul_class . '2 ' . $style . '"';
+    if (!empty($inline_css)) {
+      $result .= ' style="' . $inline_css . '"';
+    }
+    $result .= '>';
+    foreach ($children as $child) {
+      $title2 = $child['link']['link_title'];
+      $children2 = better_mm_get_children($child['link']);
+      $l2_class = better_mm_get_li_class($key2, $children);
+      $child2_class = better_mm_get_child_class($children2);
+      $class2_list = $l2_class . $child2_class;
+      if ($child['link']['href'] == '<front>') {
+        $url2 = url('<front>');
+      } elseif (strpos($child['link']['href'], 'http') === 0) {
+        $url2 = $child['link']['href'];
+      } else {
+        $url2 = '/' . drupal_get_path_alias($child['link']['href']);
+      }
+      $result .= '<li class="' . $class2_list . '"><a href="' . $url2 . '">' . $title2 . '</a>';
+      $key2++;
+      if (!empty($children2)) {
+        $key3 = 0;
+        $result .= '<div class="plus-button"></div><ul class="' . $ul_class . '3">';
+        foreach ($children2 as $child2) {
+          $title3 = $child2['link']['link_title'];
+          $l3_class = better_mm_get_li_class($key3, $children2);
+          if ($child2['link']['href'] == '<front>') {
+            $url3 = url('<front>');
+          } elseif (strpos($child2['link']['href'], 'http') === 0) {
+            $url3 = $child2['link']['href'];
+          } else {
+            $url3 = '/' . drupal_get_path_alias($child2['link']['href']);
+          }
+          $result .= '<li class="' . $l3_class . '"><a href="' . $url3 . '">' . $title3 . '</a></li>';
+          $key3++;
+        } // foreach child2
+        $result .= '</ul></li>';
+      } else {
+        $result .= '</li>';
+      }
+    } // foreach child
+    $result .= '</ul></li>';
+  } else {
+    $result .= '</li>';
+  }
+  return $result;
+}
+
+// ====================================
+// = Build Mobile Secondary Menu HTML =
+// ====================================
+
+function better_mm_mobile_secondary_html($mobile_settings) {
+  $secondary_items = $mobile_settings['secondary_items_settings']['secondary_item'];
+  $result = '';
+  
+  if (!empty($secondary_items[1]['href'])) {
+    $result .= '<div class="side-nav-header">';
+    $result .= '<ul class="mobile-secondary">';
+    foreach ($secondary_items as $key => $menu_item) {
+      $link_title = $menu_item['title'];
+      if ($menu_item['href'] == '<front>') {
+        $url = url('<front>');
+      } elseif (strpos($menu_item['href'], 'http') === 0) {
+        $url = $menu_item['href'];
+      } else {
+        $url = '/' . drupal_get_path_alias($menu_item['href']);
+      }
+      $class = $menu_item['class'];
+      if (!empty($menu_item['href'])) {
+        $result .= '<li><div class="table"><div class="table-cell">';
+        $result .= '<a href="' . $url . '" class="' . $class . '">' . $link_title . '</a>';
+        $result .= '</div></div></li>';
+      }
+    }
+    $result .= '</ul></div>';
+  }
+  return $result;
+}
+
+// ================================
+// = Implements hook_block_info() =
+// ================================
+
+function better_mm_block_info() {
+  $blocks = array();
+  $blocks['better_mm_menu_block'] = array(
+    'info' => t('Better Mega Menu Block'),
+  );
+  $blocks['better_mm_mobile_block'] = array(
+    'info' => t('Better Mega Menu Mobile Block'),
+  );
+  
+  return $blocks;
+}
+
+// ================================
+// = Implements hook_block_view() =
+// ================================
+
+function better_mm_block_view($delta = '') {
+  $block = array();
+  
+  switch ($delta) {
+    case 'better_mm_menu_block':
+    $block['subject'] = '';
+    $block['content'] = variable_get('bmm_block_content', '');
+    break;
+    
+    case 'better_mm_mobile_block':
+    $block['subject'] = '';
+    $block['content'] = variable_get('bmm_mobile_block_content', '');
+    break;
+  }
+  return $block;
+}
