@@ -96,10 +96,15 @@ function tribute_media_install() {
   $shortcut_set->links = NULL;
   $shortcut_set->links = array(
     array(
-      'link_path' => 'admin/appearance/settings',
-      'link_title' => st('Theme'),
+      'link_path' => 'admin/structure/block',
+      'link_title' => st('Administer Blocks'),
       'weight' => -17,
     ),
+    array(
+      'link_path' => 'admin/structure/menu',
+      'link_title' => st('Manage Menus'),
+      'weight' => -12,
+    ),    
   );
   shortcut_set_save($shortcut_set);
   // Update the menu router information.
