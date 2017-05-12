@@ -697,7 +697,7 @@ function tm_content_types_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -712,20 +712,262 @@ function tm_content_types_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'body',
     'label' => 'Body',
-    'required' => FALSE,
+    'required' => 0,
     'settings' => array(
-      'display_summary' => TRUE,
+      'display_summary' => 1,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'text',
       'settings' => array(
         'rows' => 20,
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => -4,
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'node-page-field_image'.
+  $field_instances['node-page-field_image'] = array(
+    'bundle' => 'page',
+    'deleted' => 0,
+    'description' => 'Adding an image here will automatically be formatted on your page. Leave this image empty and add directly in content area if you\'d like to move this image manually.',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => '',
+        ),
+        'type' => 'image',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_image',
+    'label' => 'Image',
+    'required' => 0,
+    'settings' => array(
+      'alt_field' => 1,
+      'default_image' => 0,
+      'file_directory' => 'image-uploads',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '1280x800',
+      'min_resolution' => '',
+      'title_field' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'image',
+      'settings' => array(
+        'preview_image_style' => 'thumbnail',
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'image_image',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'node-page-meta_canonical'.
+  $field_instances['node-page-meta_canonical'] = array(
+    'bundle' => 'page',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Canonical URLs are used from the search engines, and allow them to not report duplicate titles for HTML pages that are accessible from different URLs. Use an absolute path for your URL; canonical URLs that point to a different domain are normally not accepted.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'metatags_quick',
+        'settings' => array(),
+        'type' => 'metatags_quick_link',
+        'weight' => 5,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'meta_canonical',
+    'formatter' => 'metatags_quick_default',
+    'label' => '(Meta)Canonical URL',
+    'required' => FALSE,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'metatags_quick',
+      'settings' => array(),
+      'type' => 'metatags_quick_textfield',
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance: 'node-page-meta_copyright'.
+  $field_instances['node-page-meta_copyright'] = array(
+    'bundle' => 'page',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'metatags_quick',
+        'settings' => array(),
+        'type' => 'metatags_quick_default',
+        'weight' => 2,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'meta_copyright',
+    'formatter' => 'metatags_quick_default',
+    'label' => '(Meta)Copyright',
+    'required' => FALSE,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'metatags_quick',
+      'settings' => array(),
+      'type' => 'metatags_quick_textfield',
+      'weight' => 9,
+    ),
+  );
+
+  // Exported field_instance: 'node-page-meta_description'.
+  $field_instances['node-page-meta_description'] = array(
+    'bundle' => 'page',
+    'default_value' => array(
+      0 => array(
+        'metatags_quick' => '[site:slogan]',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'metatags_quick',
+        'settings' => array(),
+        'type' => 'metatags_quick_default',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'meta_description',
+    'formatter' => 'metatags_quick_default',
+    'label' => '(Meta)Description',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'metatags_quick',
+      'settings' => array(),
+      'type' => 'metatags_quick_textarea',
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'node-page-meta_keywords'.
+  $field_instances['node-page-meta_keywords'] = array(
+    'bundle' => 'page',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'metatags_quick',
+        'settings' => array(),
+        'type' => 'metatags_quick_default',
+        'weight' => 4,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'meta_keywords',
+    'formatter' => 'metatags_quick_default',
+    'label' => '(Meta)Keywords',
+    'required' => FALSE,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'metatags_quick',
+      'settings' => array(),
+      'type' => 'metatags_quick_textfield',
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-page-meta_robots'.
+  $field_instances['node-page-meta_robots'] = array(
+    'bundle' => 'page',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'metatags_quick',
+        'settings' => array(),
+        'type' => 'metatags_quick_default',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'meta_robots',
+    'formatter' => 'metatags_quick_default',
+    'label' => '(Meta)Robots',
+    'required' => FALSE,
+    'settings' => array(
+      'options' => 'noarchive,nofollow,noindex,noodp,nosnippet,noydir',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'metatags_quick',
+      'settings' => array(),
+      'type' => 'metatags_quick_checkboxes',
+      'weight' => 6,
     ),
   );
 
