@@ -132,7 +132,7 @@ function tribute_media_install() {
     'pass' => $password,
     'status' => 1,
     'roles' => array(
-      'administrator' => $role_id,
+      $role_id => $role_id,
     ),
   );
   $account = user_save('', $ad_fields);
@@ -146,7 +146,7 @@ function tribute_media_install() {
     'pass' => $password,
     'status' => 1,
     'roles' => array(
-      'Tech Support' => $role_id,
+      $role_id => $role_id,
     ),
   );
   $account = user_save('', $ts_fields);
