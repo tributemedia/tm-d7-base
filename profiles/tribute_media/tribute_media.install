@@ -120,4 +120,34 @@ function tribute_media_install() {
   node_access_needs_rebuild(FALSE);
   // ignore any other install messages
   drupal_get_messages();
+  
+  // Create Admin and Tech Support users.
+  $password = 'May2017!';
+  $role = user_role_load_by_name('administrator');
+  $role_id = $role->rid;
+  // Set up the user fields
+  $ad_fields = array(
+    'name' => 'Admin',
+    'mail' => 'changeme@example.com',
+    'pass' => $password,
+    'status' => 1,
+    'roles' => array(
+      'administrator' => $role_id,
+    ),
+  );
+  $account = user_save('', $ad_fields);
+  
+  $role = user_role_load_by_name('Tech Support');
+  $role_id = $role->rid;
+  // Set up the user fields
+  $ts_fields = array(
+    'name' => 'Tech Support',
+    'mail' => 'servers@tributemedia.com',
+    'pass' => $password,
+    'status' => 1,
+    'roles' => array(
+      'Tech Support' => $role_id,
+    ),
+  );
+  $account = user_save('', $ts_fields);
 }
