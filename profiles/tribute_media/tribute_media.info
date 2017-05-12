@@ -83,6 +83,7 @@ dependencies[] = scheduler
 dependencies[] = site_verify
 dependencies[] = token
 dependencies[] = userprotect
+dependencies[] = company_info
 ; Pantheon
 dependencies[] = pantheon_api
 dependencies[] = pantheon_login
