@@ -25,6 +25,7 @@ function tm_content_types_user_default_permissions() {
   $permissions['access content overview'] = array(
     'name' => 'access content overview',
     'roles' => array(
+      'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -33,7 +34,9 @@ function tm_content_types_user_default_permissions() {
   // Exported permission: 'administer content types'.
   $permissions['administer content types'] = array(
     'name' => 'administer content types',
-    'roles' => array(),
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+    ),
     'module' => 'node',
   );
 
@@ -41,22 +44,18 @@ function tm_content_types_user_default_permissions() {
   $permissions['administer nodes'] = array(
     'name' => 'administer nodes',
     'roles' => array(
+      'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
   );
 
-  // Exported permission: 'assign Tech Support role'.
-  $permissions['assign Tech Support role'] = array(
-    'name' => 'assign Tech Support role',
-    'roles' => array(),
-    'module' => 'role_delegation',
-  );
-
   // Exported permission: 'bypass node access'.
   $permissions['bypass node access'] = array(
     'name' => 'bypass node access',
-    'roles' => array(),
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+    ),
     'module' => 'node',
   );
 
@@ -64,6 +63,7 @@ function tm_content_types_user_default_permissions() {
   $permissions['create article content'] = array(
     'name' => 'create article content',
     'roles' => array(
+      'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -80,6 +80,7 @@ function tm_content_types_user_default_permissions() {
   $permissions['create page content'] = array(
     'name' => 'create page content',
     'roles' => array(
+      'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -89,6 +90,7 @@ function tm_content_types_user_default_permissions() {
   $permissions['delete any article content'] = array(
     'name' => 'delete any article content',
     'roles' => array(
+      'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -105,6 +107,7 @@ function tm_content_types_user_default_permissions() {
   $permissions['delete any page content'] = array(
     'name' => 'delete any page content',
     'roles' => array(
+      'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -114,6 +117,7 @@ function tm_content_types_user_default_permissions() {
   $permissions['delete own article content'] = array(
     'name' => 'delete own article content',
     'roles' => array(
+      'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -130,6 +134,7 @@ function tm_content_types_user_default_permissions() {
   $permissions['delete own page content'] = array(
     'name' => 'delete own page content',
     'roles' => array(
+      'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -139,6 +144,7 @@ function tm_content_types_user_default_permissions() {
   $permissions['delete revisions'] = array(
     'name' => 'delete revisions',
     'roles' => array(
+      'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -148,6 +154,7 @@ function tm_content_types_user_default_permissions() {
   $permissions['edit any article content'] = array(
     'name' => 'edit any article content',
     'roles' => array(
+      'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -164,6 +171,7 @@ function tm_content_types_user_default_permissions() {
   $permissions['edit any page content'] = array(
     'name' => 'edit any page content',
     'roles' => array(
+      'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -173,6 +181,7 @@ function tm_content_types_user_default_permissions() {
   $permissions['edit own article content'] = array(
     'name' => 'edit own article content',
     'roles' => array(
+      'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -189,6 +198,7 @@ function tm_content_types_user_default_permissions() {
   $permissions['edit own page content'] = array(
     'name' => 'edit own page content',
     'roles' => array(
+      'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -198,6 +208,7 @@ function tm_content_types_user_default_permissions() {
   $permissions['revert revisions'] = array(
     'name' => 'revert revisions',
     'roles' => array(
+      'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -207,6 +218,7 @@ function tm_content_types_user_default_permissions() {
   $permissions['view own unpublished content'] = array(
     'name' => 'view own unpublished content',
     'roles' => array(
+      'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -216,6 +228,7 @@ function tm_content_types_user_default_permissions() {
   $permissions['view revisions'] = array(
     'name' => 'view revisions',
     'roles' => array(
+      'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
