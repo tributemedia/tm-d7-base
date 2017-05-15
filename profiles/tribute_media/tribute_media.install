@@ -44,9 +44,9 @@ function tribute_media_install() {
       'module' => 'user',
       'delta' => 'login',
       'theme' => $default_theme,
-      'status' => 1,
+      'status' => 0,
       'weight' => 0,
-      'region' => 'sidebar_first',
+      'region' => '',
       'pages' => '',
       'cache' => -1,
     ),
@@ -155,7 +155,7 @@ function tribute_media_install() {
   $account = user_save('', $ts_fields);
   
   // Set alias patterns
-  variable_set('pathauto_node_default_pattern', '[node:title]');
+  variable_set('pathauto_node_pattern', '[node:title]');
   variable_set('pathauto_node_article_pattern', 'blog/[node:title]');
   
   // Create homepage node
@@ -169,4 +169,34 @@ function tribute_media_install() {
   $nid = $ewrapper->getIdentifier();
   
   variable_set('site_frontpage', 'node/' . $nid);
+  
+}
+
+// =================================
+// = Implements hook_block_info(). =
+// =================================
+
+function tribute_media_block_info() {
+  $blocks = array();
+  $blocks['hero_banner'] = array(
+    'info' => t('Home Page Hero Banner Block'),
+  );
+  
+  return $blocks;
+}
+
+// =================================
+// = Implements hook_block_view(). =
+// =================================
+
+function tribute_media_block_view($delta='') {
+  $block = array();
+  
+  switch($delta) {
+    case 'hero_banner' :
+    $block['content'] = '<h2>Hero Banner Here</h2>';
+    break;
+  }
+  
+  return $block;  
 }
