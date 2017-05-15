@@ -153,17 +153,26 @@ function tribute_media_install() {
   
   // Create homepage node
   $ts_user = user_load_by_name('Tech Support');
-  $node = new stdClass();
-  $node->title = "Home";
-  $node->type = "page";
-  node_object_prepare($node);
-  $node->language = LANGUAGE_NONE;
-  $node->uid = $ts_user->uid;
-  $node->status = 1;
-  $node->comment = 0;
-  $node = node_submit($node);
-  node_save($node);
+//   $node = new stdClass();
+//   $node->title = "Home";
+//   $node->type = "page";
+//   node_object_prepare($node);
+//   $node->language = LANGUAGE_NONE;
+//   $node->uid = $ts_user->uid;
+//   $node->status = 1;
+//   $node->comment = 0;
+//   $node = node_submit($node);
+//   node_save($node);
   
   // Set new node to front page.
   //variable_set('site_frontpage', $node);
+  
+  $node = entity_create('node', array('type' => 'page'));
+  $node->uid = $ts_user->uid;
+  $ewrapper = entity_metadata_wrapper('node', $node);
+  $ewrapper->title = 'Home';
+  $ewrapper->save();
+  $nid = $ewrapper->getIdentifier();
+  
+  variable_set('site_frontpage', 'node/' . $nid);
 }
