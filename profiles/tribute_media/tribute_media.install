@@ -171,32 +171,3 @@ function tribute_media_install() {
   variable_set('site_frontpage', 'node/' . $nid);
   
 }
-
-// =================================
-// = Implements hook_block_info(). =
-// =================================
-
-function tribute_media_block_info() {
-  $blocks = array();
-  $blocks['hero_banner'] = array(
-    'info' => t('Home Page Hero Banner Block'),
-  );
-  
-  return $blocks;
-}
-
-// =================================
-// = Implements hook_block_view(). =
-// =================================
-
-function tribute_media_block_view($delta='') {
-  $block = array();
-  
-  switch($delta) {
-    case 'hero_banner' :
-    $block['content'] = '<h2>Hero Banner Here</h2>';
-    break;
-  }
-  
-  return $block;  
-}
