@@ -165,5 +165,5 @@ function tribute_media_install() {
   node_save($node);
   
   // Set new node to front page.
-  variable_set('site_frontpage', $node);
+  //variable_set('site_frontpage', $node);
 }
