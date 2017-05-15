@@ -121,6 +121,9 @@ function tribute_media_install() {
   // ignore any other install messages
   drupal_get_messages();
   
+  // Enable clean URLs
+  variable_set('clean_url', 1);
+  
   // Create Admin and Tech Support users.
   $password = 'May2017!';
   $role = user_role_load_by_name('administrator');
@@ -151,21 +154,12 @@ function tribute_media_install() {
   );
   $account = user_save('', $ts_fields);
   
+  // Set alias patterns
+  variable_set('pathauto_node_default_pattern', '[node:title]');
+  variable_set('pathauto_node_article_pattern', 'blog/[node:title]');
+  
   // Create homepage node
   $ts_user = user_load_by_name('Tech Support');
-//   $node = new stdClass();
-//   $node->title = "Home";
-//   $node->type = "page";
-//   node_object_prepare($node);
-//   $node->language = LANGUAGE_NONE;
-//   $node->uid = $ts_user->uid;
-//   $node->status = 1;
-//   $node->comment = 0;
-//   $node = node_submit($node);
-//   node_save($node);
-  
-  // Set new node to front page.
-  //variable_set('site_frontpage', $node);
   
   $node = entity_create('node', array('type' => 'page'));
   $node->uid = $ts_user->uid;
