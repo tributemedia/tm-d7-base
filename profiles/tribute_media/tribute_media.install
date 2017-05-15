@@ -156,6 +156,7 @@ function tribute_media_install() {
   
   // Set TCB User Login user account
   variable_set('tcbclient_uid', 'Tech Support');
+  variable_set('tcbclient_url', 'http://dev-authtechcenterboisecom.pantheonsite.io/')
   
   // Set alias patterns
   variable_set('pathauto_node_pattern', '[node:title]');

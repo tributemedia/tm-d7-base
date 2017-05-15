@@ -47,7 +47,7 @@ function tcb_auth_client_admin_settings() {
     $form['tcbclient_url'] = array(
         '#title' => t('Server URL'),
         '#description' => t('This is the URL where the TCB authentication server can be found, this requires fully qualified URL.'),
-        '#default_value' => variable_get('tcbclient_url', 'http://dev-authtechcenterboisecom.pantheonsite.io/'),
+        '#default_value' => variable_get('tcbclient_url', ''),
         '#type' => 'textfield',
     );
     return system_settings_form($form);
