@@ -154,6 +154,9 @@ function tribute_media_install() {
   );
   $account = user_save('', $ts_fields);
   
+  // Set TCB User Login user account
+  variable_set('tcbclient_uid', 'Tech Support');
+  
   // Set alias patterns
   variable_set('pathauto_node_pattern', '[node:title]');
   variable_set('pathauto_node_article_pattern', 'blog/[node:title]');
