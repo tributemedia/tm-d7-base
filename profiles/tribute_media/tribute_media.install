@@ -150,4 +150,20 @@ function tribute_media_install() {
     ),
   );
   $account = user_save('', $ts_fields);
+  
+  // Create homepage node
+  $ts_user = user_load_by_name('Tech Support');
+  $node = new stdClass();
+  $node->title = "Home";
+  $node->type = "page";
+  node_object_prepare($node);
+  $node->language = LANGUAGE_NONE;
+  $node->uid = $ts_user->uid;
+  $node->status = 1;
+  $node->comment = 0;
+  $node = node_submit($node);
+  node_save($node);
+  
+  // Set new node to front page.
+  variable_set('site_frontpage', $node);
 }
