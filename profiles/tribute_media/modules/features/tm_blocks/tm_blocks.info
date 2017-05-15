@@ -1,0 +1,9 @@
+name = TM Blocks
+description = Enable Tribute Media base blocks.
+core = 7.x
+package = Features
+version = 7.x-1.0
+dependencies[] = fe_block
+features[fe_block_boxes][] = preface_hero_banner
+features[fe_block_settings][] = block-preface_hero_banner
+features[features_api][] = api:2

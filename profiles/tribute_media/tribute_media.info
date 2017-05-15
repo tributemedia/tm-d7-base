@@ -124,4 +124,7 @@ dependencies[] = features
 dependencies[] = tm_content_types
 dependencies[] = tm_menus
 dependencies[] = tm_roles
-
+dependencies[] = tm_text_formats
+dependencies[] = tm_blocks
+; Features Extra
+dependencies[] = fe_block
