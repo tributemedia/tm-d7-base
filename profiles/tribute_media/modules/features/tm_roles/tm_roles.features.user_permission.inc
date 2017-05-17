@@ -39,6 +39,27 @@ function tm_roles_user_default_permissions() {
     'module' => 'webform',
   );
 
+  // Exported permission: 'access content'.
+  $permissions['access content'] = array(
+    'name' => 'access content',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'access content overview'.
+  $permissions['access content overview'] = array(
+    'name' => 'access content overview',
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'access contextual links'.
   $permissions['access contextual links'] = array(
     'name' => 'access contextual links',
@@ -169,6 +190,15 @@ function tm_roles_user_default_permissions() {
     'module' => 'ckeditor',
   );
 
+  // Exported permission: 'administer content types'.
+  $permissions['administer content types'] = array(
+    'name' => 'administer content types',
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'administer devel menu items'.
   $permissions['administer devel menu items'] = array(
     'name' => 'administer devel menu items',
@@ -183,6 +213,15 @@ function tm_roles_user_default_permissions() {
       'Tech Support' => 'Tech Support',
     ),
     'module' => 'features',
+  );
+
+  // Exported permission: 'administer features menu items'.
+  $permissions['administer features menu items'] = array(
+    'name' => 'administer features menu items',
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+    ),
+    'module' => 'menu_admin_per_menu',
   );
 
   // Exported permission: 'administer fieldgroups'.
@@ -202,15 +241,6 @@ function tm_roles_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'field',
-  );
-
-  // Exported permission: 'administer filters'.
-  $permissions['administer filters'] = array(
-    'name' => 'administer filters',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-    ),
-    'module' => 'filter',
   );
 
   // Exported permission: 'administer google analytics'.
@@ -333,6 +363,16 @@ function tm_roles_user_default_permissions() {
       'Tech Support' => 'Tech Support',
     ),
     'module' => 'menu_admin_per_menu',
+  );
+
+  // Exported permission: 'administer nodes'.
+  $permissions['administer nodes'] = array(
+    'name' => 'administer nodes',
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'node',
   );
 
   // Exported permission: 'administer page titles'.
@@ -585,6 +625,15 @@ function tm_roles_user_default_permissions() {
     'module' => 'maxlength',
   );
 
+  // Exported permission: 'bypass node access'.
+  $permissions['bypass node access'] = array(
+    'name' => 'bypass node access',
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'cacheflush clear cache'.
   $permissions['cacheflush clear cache'] = array(
     'name' => 'cacheflush clear cache',
@@ -694,6 +743,16 @@ function tm_roles_user_default_permissions() {
     'module' => 'webform',
   );
 
+  // Exported permission: 'delete revisions'.
+  $permissions['delete revisions'] = array(
+    'name' => 'delete revisions',
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'delete terms in article_type'.
   $permissions['delete terms in article_type'] = array(
     'name' => 'delete terms in article_type',
@@ -764,10 +823,7 @@ function tm_roles_user_default_permissions() {
   // Exported permission: 'edit path_based metatags_quick'.
   $permissions['edit path_based metatags_quick'] = array(
     'name' => 'edit path_based metatags_quick',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-      'administrator' => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'metatags_quick',
   );
 
@@ -902,6 +958,16 @@ function tm_roles_user_default_permissions() {
     'module' => 'features',
   );
 
+  // Exported permission: 'revert revisions'.
+  $permissions['revert revisions'] = array(
+    'name' => 'revert revisions',
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'schedule publishing of nodes'.
   $permissions['schedule publishing of nodes'] = array(
     'name' => 'schedule publishing of nodes',
@@ -996,44 +1062,24 @@ function tm_roles_user_default_permissions() {
     'module' => 'ctools',
   );
 
-  // Exported permission: 'use text format filtered_html'.
-  $permissions['use text format filtered_html'] = array(
-    'name' => 'use text format filtered_html',
+  // Exported permission: 'view own unpublished content'.
+  $permissions['view own unpublished content'] = array(
+    'name' => 'view own unpublished content',
     'roles' => array(
       'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
     ),
-    'module' => 'filter',
+    'module' => 'node',
   );
 
-  // Exported permission: 'use text format full_html'.
-  $permissions['use text format full_html'] = array(
-    'name' => 'use text format full_html',
+  // Exported permission: 'view revisions'.
+  $permissions['view revisions'] = array(
+    'name' => 'view revisions',
     'roles' => array(
       'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
     ),
-    'module' => 'filter',
-  );
-
-  // Exported permission: 'use text format html_only'.
-  $permissions['use text format html_only'] = array(
-    'name' => 'use text format html_only',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'filter',
-  );
-
-  // Exported permission: 'use text format html_only_nofilter'.
-  $permissions['use text format html_only_nofilter'] = array(
-    'name' => 'use text format html_only_nofilter',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'filter',
+    'module' => 'node',
   );
 
   // Exported permission: 'view scheduled content'.
