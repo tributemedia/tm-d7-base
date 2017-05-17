@@ -185,15 +185,6 @@ function tm_roles_user_default_permissions() {
     'module' => 'features',
   );
 
-  // Exported permission: 'administer features menu items'.
-  $permissions['administer features menu items'] = array(
-    'name' => 'administer features menu items',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-    ),
-    'module' => 'menu_admin_per_menu',
-  );
-
   // Exported permission: 'administer fieldgroups'.
   $permissions['administer fieldgroups'] = array(
     'name' => 'administer fieldgroups',
@@ -773,7 +764,10 @@ function tm_roles_user_default_permissions() {
   // Exported permission: 'edit path_based metatags_quick'.
   $permissions['edit path_based metatags_quick'] = array(
     'name' => 'edit path_based metatags_quick',
-    'roles' => array(),
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+      'administrator' => 'administrator',
+    ),
     'module' => 'metatags_quick',
   );
 
@@ -1008,8 +1002,6 @@ function tm_roles_user_default_permissions() {
     'roles' => array(
       'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
     ),
     'module' => 'filter',
   );
