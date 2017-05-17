@@ -94,9 +94,6 @@ dependencies[] = sharethis
 ; Skinr
 dependencies[] = skinr
 dependencies[] = skinr_ui
-; Spam control
-dependencies[] = captcha
-dependencies[] = recaptcha
 ; Statistics
 dependencies[] = googleanalytics
 ; Styles
