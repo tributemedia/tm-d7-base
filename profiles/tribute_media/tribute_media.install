@@ -169,25 +169,25 @@ function tribute_media_install() {
   );
   $account = user_save('', $ts_fields);
   // Permissions to assign to Tech Support.
-  $perms = array(
-    'administer filters',
-    'use text format filtered html',
-    'use text format full html',
-    'use text format html only no filter',
-    'use text format html only',
-    'edit path based meta tags',
-    'bypass node access',
-    'administer content types',
-    'administer nodes',
-    'access content overview',
-  );
-  
-  // Grant the permissions.
-  user_role_grant_permissions($role_id, $perms);
+  // $perms = array(
+ //    'administer filters',
+ //    'use text format filtered html',
+ //    'use text format full html',
+ //    'use text format html only no filter',
+ //    'use text format html only',
+ //    'edit path based meta tags',
+ //    'bypass node access',
+ //    'administer content types',
+ //    'administer nodes',
+ //    'access content overview',
+ //  );
+ //
+ //  // Grant the permissions.
+ //  user_role_grant_permissions($role_id, $perms);
   
   // Set TCB User Login user account
   variable_set('tcbclient_uid', 'Tech Support');
-  variable_set('tcbclient_url', 'http://dev-authtechcenterboisecom.pantheonsite.io/')
+  variable_set('tcbclient_url', 'http://dev-authtechcenterboisecom.pantheonsite.io/');
   
   // Set alias patterns
   variable_set('pathauto_node_pattern', '[node:title]');
