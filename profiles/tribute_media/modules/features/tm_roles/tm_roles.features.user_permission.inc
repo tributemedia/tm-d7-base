@@ -144,15 +144,6 @@ function tm_roles_user_default_permissions() {
     'module' => 'googleanalytics',
   );
 
-  // Exported permission: 'administer CAPTCHA settings'.
-  $permissions['administer CAPTCHA settings'] = array(
-    'name' => 'administer CAPTCHA settings',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-    ),
-    'module' => 'captcha',
-  );
-
   // Exported permission: 'administer actions'.
   $permissions['administer actions'] = array(
     'name' => 'administer actions',
@@ -213,15 +204,6 @@ function tm_roles_user_default_permissions() {
       'Tech Support' => 'Tech Support',
     ),
     'module' => 'features',
-  );
-
-  // Exported permission: 'administer features menu items'.
-  $permissions['administer features menu items'] = array(
-    'name' => 'administer features menu items',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-    ),
-    'module' => 'menu_admin_per_menu',
   );
 
   // Exported permission: 'administer fieldgroups'.
@@ -400,16 +382,6 @@ function tm_roles_user_default_permissions() {
       'Tech Support' => 'Tech Support',
     ),
     'module' => 'user',
-  );
-
-  // Exported permission: 'administer recaptcha'.
-  $permissions['administer recaptcha'] = array(
-    'name' => 'administer recaptcha',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'recaptcha',
   );
 
   // Exported permission: 'administer redirects'.
@@ -1005,16 +977,6 @@ function tm_roles_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'page_title',
-  );
-
-  // Exported permission: 'skip CAPTCHA'.
-  $permissions['skip CAPTCHA'] = array(
-    'name' => 'skip CAPTCHA',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'captcha',
   );
 
   // Exported permission: 'switch shortcut sets'.
