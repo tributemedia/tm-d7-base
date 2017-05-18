@@ -80,6 +80,16 @@ function tribute_media_install() {
       'pages' => '',
       'cache' => -1,
     ),
+    array(
+      'module' => 'tm_blocks',
+      'delta' => 'preface_hero_banner',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -10,
+      'region' => 'preface',
+      'pages' => '<front>',
+      'cache' => 0,
+    ),
   );
   // drop system / user blocks to ensure correct building
   db_delete('block')->condition('module', 'system')->execute();
@@ -195,4 +205,8 @@ function tribute_media_install() {
   
   variable_set('site_frontpage', 'node/' . $nid);
   
+  // Enable webform on Landing Page content type
+  $types = variable_get('webform_node_types', array('webform'));
+  $types[] = 'landing_page';
+  variable_set('weform_node_types', $types);
 }
