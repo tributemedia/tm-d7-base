@@ -18,18 +18,18 @@ function tm_blocks_default_fe_block_settings() {
     'machine_name' => 'preface_hero_banner',
     'module' => 'block',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => '<front>',
     'roles' => array(),
     'themes' => array(
       'material_theme' => array(
         'region' => 'preface',
         'status' => 1,
         'theme' => 'material_theme',
-        'weight' => 0,
+        'weight' => -10,
       ),
     ),
     'title' => '',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   return $export;
