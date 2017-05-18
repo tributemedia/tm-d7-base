@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file
+ *
+ */
+
+// =============================
+// = Implements hoo_enable(). =
+// =============================
+
+function tm_blocks_enable() {
+  $blocks = array(
+    array(
+      'status' => 1,
+      'weight' => -10,
+      'region' => 'preface',
+      'visibility' => 1,
+      'pages' => '<front>',
+      'module' => 'tm_blocks',
+      'delta' => 'hero_banner',
+      'theme' => 'material_theme',
+    ),
+  );
+  
+  foreach($blocks as $block) {
+    db_merge('block')
+      ->key(array(
+        'module' => $block['module'],
+        'delta' => $block['delta'],
+        'theme' => $block['theme'],
+      ))
+      ->fields(array(
+        'status' => $block['status'],
+        'weight' => $block['weight'],
+        'region' => $block['region'],
+        'visibility' => $block['visibility'],
+        'pages' => $block['pages'],
+      ))
+      ->execute();
+  }
+}
