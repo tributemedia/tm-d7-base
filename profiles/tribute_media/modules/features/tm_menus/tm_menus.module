@@ -3,3 +3,11 @@
  * @file
  * Drupal needs this blank file.
  */
+
+// =================================
+// = Implements hook_menu_alter(). =
+// =================================
+
+function tm_menus_menu_alter(&$items) {
+  unset($items['admin/cacheflush']);
+}
