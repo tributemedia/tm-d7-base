@@ -168,22 +168,12 @@ function tribute_media_install() {
     ),
   );
   $account = user_save('', $ts_fields);
-  // Permissions to assign to Tech Support.
-  // $perms = array(
- //    'administer filters',
- //    'use text format filtered html',
- //    'use text format full html',
- //    'use text format html only no filter',
- //    'use text format html only',
- //    'edit path based meta tags',
- //    'bypass node access',
- //    'administer content types',
- //    'administer nodes',
- //    'access content overview',
- //  );
- //
- //  // Grant the permissions.
- //  user_role_grant_permissions($role_id, $perms);
+
+  // Set Tech Support as admin role for Masquerade.
+  variable_set('masquerade_admin_roles', array($role_id,));
+  
+  // Set Admin as Masquerade test user.
+  variable_set('masquerade_test_user', 'Admin');
   
   // Set TCB User Login user account
   variable_set('tcbclient_uid', 'Tech Support');
