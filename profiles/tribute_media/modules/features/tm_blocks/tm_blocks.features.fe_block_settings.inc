@@ -51,7 +51,13 @@ function tm_blocks_default_fe_block_settings() {
         'region' => 'preface',
         'status' => 1,
         'theme' => 'material_theme',
-        'weight' => -10,
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
       ),
       'seven' => array(
         'region' => '',
@@ -61,7 +67,7 @@ function tm_blocks_default_fe_block_settings() {
       ),
     ),
     'title' => '',
-    'visibility' => 1,
+    'visibility' => 0,
   );
 
   return $export;
