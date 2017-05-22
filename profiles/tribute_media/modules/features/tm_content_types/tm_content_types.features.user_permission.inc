@@ -10,6 +10,55 @@
 function tm_content_types_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: 'access content'.
+  $permissions['access content'] = array(
+    'name' => 'access content',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'access content overview'.
+  $permissions['access content overview'] = array(
+    'name' => 'access content overview',
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'administer content types'.
+  $permissions['administer content types'] = array(
+    'name' => 'administer content types',
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'administer nodes'.
+  $permissions['administer nodes'] = array(
+    'name' => 'administer nodes',
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'bypass node access'.
+  $permissions['bypass node access'] = array(
+    'name' => 'bypass node access',
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'create article content'.
   $permissions['create article content'] = array(
     'name' => 'create article content',
@@ -91,6 +140,16 @@ function tm_content_types_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'delete revisions'.
+  $permissions['delete revisions'] = array(
+    'name' => 'delete revisions',
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'edit any article content'.
   $permissions['edit any article content'] = array(
     'name' => 'edit any article content',
@@ -138,6 +197,36 @@ function tm_content_types_user_default_permissions() {
   // Exported permission: 'edit own page content'.
   $permissions['edit own page content'] = array(
     'name' => 'edit own page content',
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'revert revisions'.
+  $permissions['revert revisions'] = array(
+    'name' => 'revert revisions',
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'view own unpublished content'.
+  $permissions['view own unpublished content'] = array(
+    'name' => 'view own unpublished content',
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'view revisions'.
+  $permissions['view revisions'] = array(
+    'name' => 'view revisions',
     'roles' => array(
       'Tech Support' => 'Tech Support',
       'administrator' => 'administrator',
