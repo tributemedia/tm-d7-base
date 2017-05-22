@@ -123,9 +123,6 @@ function tribute_media_install() {
   // ignore any other install messages
   drupal_get_messages();
   
-  // Enable clean URLs
-  variable_set('clean_url', 1);
-  
   // Create Admin and Tech Support users.
   // Generate password using current date.
   $current_month = date('n');
@@ -196,11 +193,12 @@ function tribute_media_install() {
   variable_set('site_frontpage', 'node/' . $nid);
   
   // Create Contact webform
-  $types = variable_get('weform_node_types', array('webform'));
-  $types[] = 'landing_page';
-  variable_set('weform_node_types', $types);
+  variable_set('weform_node_landing_page', 1);
   
   // Configure External Links
   variable_set('extlink_class', 0);
+  
+  // Enable clean URLs
+  variable_set('clean_url', 1);
   
 }
