@@ -109,19 +109,6 @@ function tribute_media_install() {
   shortcut_set_save($shortcut_set);
   // Update the menu router information.
   menu_rebuild();
-  // revert features to ensure they are all installed
-  $features = array(
-    'tm_content_types',
-    'tm_menus',
-    'tm_roles',
-    'tm_text_formats',
-    'tm_blocks',
-  );
-  features_revert($features);
-  // ignore any rebuild messages
-  node_access_needs_rebuild(FALSE);
-  // ignore any other install messages
-  drupal_get_messages();
   
   // Create Admin and Tech Support users.
   // Generate password using current date.
@@ -193,12 +180,26 @@ function tribute_media_install() {
   variable_set('site_frontpage', 'node/' . $nid);
   
   // Create Contact webform
-  variable_set('weform_node_landing_page', 1);
+  variable_set('webform_node_landing_page', 1);
   
   // Configure External Links
   variable_set('extlink_class', 0);
   
   // Enable clean URLs
   variable_set('clean_url', 1);
+  
+  // revert features to ensure they are all installed
+  $features = array(
+    'tm_content_types',
+    'tm_menus',
+    'tm_roles',
+    'tm_text_formats',
+    'tm_blocks',
+  );
+  features_revert($features);
+  // ignore any rebuild messages
+  node_access_needs_rebuild(FALSE);
+  // ignore any other install messages
+  drupal_get_messages();
   
 }
