@@ -1,0 +1,146 @@
+; Packaging information for iframe_cc
+name = "iframe Copier Catalog"
+description = "Copier catalog with no header or footer, ready for iframe embedding in external site."
+exclusive = "1"
+core = "7.x"
+; ----------
+; Dependencies
+; ----------
+; Administration
+dependencies[] = menu_admin_per_menu
+dependencies[] = module_filter
+dependencies[] = tcb_auth_client
+; CacheFlush
+dependencies[] = cacheflush
+dependencies[] = cacheflush_entity
+; Chaos tool suite
+dependencies[] = ctools
+; Core
+dependencies[] = block
+dependencies[] = color
+dependencies[] = contextual
+dependencies[] = dblog
+dependencies[] = field
+dependencies[] = field_sql_storage
+dependencies[] = field_ui
+dependencies[] = file
+dependencies[] = filter
+dependencies[] = help
+dependencies[] = image
+dependencies[] = list
+dependencies[] = menu
+dependencies[] = node
+dependencies[] = number
+dependencies[] = options
+dependencies[] = path
+dependencies[] = rdf
+dependencies[] = search
+dependencies[] = shortcut
+dependencies[] = system
+dependencies[] = taxonomy
+dependencies[] = text
+dependencies[] = toolbar
+dependencies[] = update
+dependencies[] = user
+; Date/Time
+dependencies[] = date
+dependencies[] = date_api
+dependencies[] = date_popup
+dependencies[] = date_views
+; Development
+dependencies[] = devel
+dependencies[] = profiler_builder
+dependencies[] = profiler_builder_extras
+; Drupal
+dependencies[] = hook_post_action
+dependencies[] = hook_post_action_bmm
+; Features extra
+dependencies[] = fe_block
+; Feeds
+dependencies[] = feeds
+dependencies[] = feeds_tamper
+dependencies[] = feeds_ui
+dependencies[] = feeds_xpathparser
+; Fields
+dependencies[] = addressfield
+dependencies[] = email
+dependencies[] = entityreference
+dependencies[] = field_group
+dependencies[] = link
+dependencies[] = markup
+dependencies[] = maxlength
+dependencies[] = node_reference
+dependencies[] = references
+dependencies[] = viewreference
+; Mail
+dependencies[] = smtp
+; Media
+dependencies[] = imce
+; Menus
+dependencies[] = better_mm
+; Meta tags (quick)
+dependencies[] = metatags_quick
+; Other
+dependencies[] = colorbox
+dependencies[] = company_info
+dependencies[] = entity
+dependencies[] = feed_path_publisher
+dependencies[] = job_scheduler
+dependencies[] = libraries
+dependencies[] = masquerade
+dependencies[] = menu_attributes
+dependencies[] = pathauto
+dependencies[] = permissions_lock
+dependencies[] = redirect
+dependencies[] = role_delegation
+dependencies[] = scheduler
+dependencies[] = site_verify
+dependencies[] = token
+dependencies[] = userprotect
+; Pantheon
+dependencies[] = pantheon_api
+dependencies[] = pantheon_login
+; SEO
+dependencies[] = page_title
+; Sharing
+dependencies[] = sharethis
+; Skinr
+dependencies[] = skinr
+dependencies[] = skinr_ui
+; Statistics
+dependencies[] = googleanalytics
+; Styles
+dependencies[] = styles
+dependencies[] = styles_ui
+; Taxonomy
+dependencies[] = taxonomy_manager
+; UUID
+dependencies[] = uuid
+; User interface
+dependencies[] = ckeditor
+dependencies[] = extlink
+dependencies[] = jquery_update
+; Views
+dependencies[] = views
+dependencies[] = views_bulk_operations
+dependencies[] = views_ui
+; Webform
+dependencies[] = webform
+dependencies[] = webform_validation
+; XML sitemap
+dependencies[] = xmlsitemap
+dependencies[] = xmlsitemap_custom
+dependencies[] = xmlsitemap_engines
+dependencies[] = xmlsitemap_node
+; colorbox
+dependencies[] = colorbox_node
+; Features
+dependencies[] = features
+dependencies[] = product_catalog
+dependencies[] = tm_blocks
+dependencies[] = tm_content_types
+dependencies[] = tm_menus
+dependencies[] = tm_roles
+dependencies[] = tm_text_formats
+dependencies[] = uuid_features
+
