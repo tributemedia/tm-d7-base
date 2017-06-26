@@ -14,7 +14,7 @@ function tm_blocks_default_fe_block_settings() {
 
   $export['block-header_links'] = array(
     'cache' => -1,
-    'custom' => 0,
+    'custom' => 1,
     'machine_name' => 'header_links',
     'module' => 'block',
     'node_types' => array(),
@@ -40,7 +40,7 @@ function tm_blocks_default_fe_block_settings() {
 
   $export['block-preface_hero_banner'] = array(
     'cache' => -1,
-    'custom' => 0,
+    'custom' => 1,
     'machine_name' => 'preface_hero_banner',
     'module' => 'block',
     'node_types' => array(),
