@@ -33,10 +33,10 @@ function tm_menus_menu_default_menu_links() {
     'weight' => -47,
     'customized' => 1,
   );
-  // Exported menu link: main-menu_contact:node/2.
-  $menu_links['main-menu_contact:node/2'] = array(
+  // Exported menu link: main-menu_contact:node/3.
+  $menu_links['main-menu_contact:node/3'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'node/2',
+    'link_path' => 'node/3',
     'router_path' => 'node/%',
     'link_title' => 'Contact',
     'options' => array(
@@ -46,7 +46,7 @@ function tm_menus_menu_default_menu_links() {
         'class' => '',
         'style' => '',
       ),
-      'identifier' => 'main-menu_contact:node/2',
+      'identifier' => 'main-menu_contact:node/3',
     ),
     'module' => 'menu',
     'hidden' => 0,
