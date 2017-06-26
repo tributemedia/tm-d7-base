@@ -173,7 +173,7 @@ function tribute_media_install() {
   $node = entity_create('node', array('type' => 'page'));
   $node->uid = $ts_user->uid;
   $ewrapper = entity_metadata_wrapper('node', $node);
-  $ewrapper->title = 'Home';
+  $ewrapper->title = 'Home Page';
   $ewrapper->save();
   $nid = $ewrapper->getIdentifier();
   
