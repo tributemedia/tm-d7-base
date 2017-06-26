@@ -104,7 +104,12 @@ function tribute_media_install() {
       'link_path' => 'admin/structure/menu',
       'link_title' => st('Manage Menus'),
       'weight' => -12,
-    ),    
+    ),
+    array(
+      'link_path' => 'apoyo',
+      'link_title' => st('Support'),
+      'weight' => -7,
+    ),
   );
   shortcut_set_save($shortcut_set);
   // Update the menu router information.
