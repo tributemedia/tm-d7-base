@@ -39,27 +39,6 @@ function tm_roles_user_default_permissions() {
     'module' => 'webform',
   );
 
-  // Exported permission: 'access content'.
-  $permissions['access content'] = array(
-    'name' => 'access content',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: 'access content overview'.
-  $permissions['access content overview'] = array(
-    'name' => 'access content overview',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: 'access contextual links'.
   $permissions['access contextual links'] = array(
     'name' => 'access contextual links',
@@ -179,15 +158,6 @@ function tm_roles_user_default_permissions() {
       'Tech Support' => 'Tech Support',
     ),
     'module' => 'ckeditor',
-  );
-
-  // Exported permission: 'administer content types'.
-  $permissions['administer content types'] = array(
-    'name' => 'administer content types',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-    ),
-    'module' => 'node',
   );
 
   // Exported permission: 'administer devel menu items'.
@@ -345,16 +315,6 @@ function tm_roles_user_default_permissions() {
       'Tech Support' => 'Tech Support',
     ),
     'module' => 'menu_admin_per_menu',
-  );
-
-  // Exported permission: 'administer nodes'.
-  $permissions['administer nodes'] = array(
-    'name' => 'administer nodes',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'node',
   );
 
   // Exported permission: 'administer page titles'.
@@ -597,15 +557,6 @@ function tm_roles_user_default_permissions() {
     'module' => 'maxlength',
   );
 
-  // Exported permission: 'bypass node access'.
-  $permissions['bypass node access'] = array(
-    'name' => 'bypass node access',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: 'cacheflush clear cache'.
   $permissions['cacheflush clear cache'] = array(
     'name' => 'cacheflush clear cache',
@@ -713,16 +664,6 @@ function tm_roles_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'webform',
-  );
-
-  // Exported permission: 'delete revisions'.
-  $permissions['delete revisions'] = array(
-    'name' => 'delete revisions',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'node',
   );
 
   // Exported permission: 'delete terms in article_type'.
@@ -930,16 +871,6 @@ function tm_roles_user_default_permissions() {
     'module' => 'features',
   );
 
-  // Exported permission: 'revert revisions'.
-  $permissions['revert revisions'] = array(
-    'name' => 'revert revisions',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: 'schedule publishing of nodes'.
   $permissions['schedule publishing of nodes'] = array(
     'name' => 'schedule publishing of nodes',
@@ -1022,26 +953,6 @@ function tm_roles_user_default_permissions() {
     'name' => 'use ctools import',
     'roles' => array(),
     'module' => 'ctools',
-  );
-
-  // Exported permission: 'view own unpublished content'.
-  $permissions['view own unpublished content'] = array(
-    'name' => 'view own unpublished content',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: 'view revisions'.
-  $permissions['view revisions'] = array(
-    'name' => 'view revisions',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-      'administrator' => 'administrator',
-    ),
-    'module' => 'node',
   );
 
   // Exported permission: 'view scheduled content'.
