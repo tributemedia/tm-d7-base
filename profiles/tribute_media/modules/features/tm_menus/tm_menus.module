@@ -12,6 +12,6 @@ function tm_menus_menu_alter(&$items) {
   
   // Disable "Cache Flush" menu item.
   unset($items['admin/cacheflush/clearall']);
-  
+  unset($items['admin/cacheflush']);
   
 }
