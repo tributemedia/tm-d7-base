@@ -38,12 +38,11 @@ $options = array(
 
 if ($powered_by == '0') {
   $pb_url = 'https://www.tributemedia.com';
+  $pb_text = 'powered by Tribute Media ' . l(t('a web marketing agency'), $pb_url, $options);
 }
 if ($powered_by == '1') {
   $pb_url = 'http://www.dealermarketing.net';
-}
-if ($powered_by == '2') {
-  $pb_url = 'http://www.xfactorsites.com';
+  $pb_text = 'powered by ' . l(t('Dealer Marketing'), $pb_url, $options);
 }
 ?>
 
@@ -258,23 +257,20 @@ if ($powered_by == '2') {
 			<div itemprop="faxNumber"><?php print 'Fax: ' . $fax; ?></div>
             <?php } ?>
 		</div><!-- #copyright-line -->
-	    <div id="powered-by" class="right-align center-on-mobile">
+	    <?php if ($powered_by != '2') { ?>
+      <div id="powered-by" class="right-align center-on-mobile">
         <div class="inner">
-          <?php if ($powered_by == '0') {
-            print 'powered by Tribute Media ' . l(t('a web marketing agency'), $pb_url, $options);
-          } elseif ($powered_by == '1') {
-            print 'powered by ' . l(t('Dealer Marketing'), $pb_url, $options);
-          } else {
-            print 'powered by ' . l(t('Xfactor Marketing'), $pb_url, $options);
-          }
-        	if ($logged_in) {
-            print ' | ' . l(t('logout'), '/user/logout');
-        	} else {
-        		print ' | ' . l(t('login'), '/user');
-          }
-          ?>
-				</div> <!-- end inner -->
-			</div> <!-- #powered-by -->
+        <?php 
+        print $pb_text;
+       	if ($logged_in) {
+          print ' | ' . l(t('logout'), '/user/logout');
+       	} else {
+       		print ' | ' . l(t('login'), '/user');
+        }
+        ?>
+        </div> <!-- end inner -->
+      </div> <!-- #powered-by -->
+      <?php } ?>
 		</div> <!-- #footer-wrapper -->
 </footer> 
     
