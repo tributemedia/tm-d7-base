@@ -115,6 +115,7 @@ if ($powered_by == '1') {
           <div class="inner">
           <div id="highlighted-container" class="container">
             <div class="inner row">
+                  <?php print $messages; ?>
                   <?php print render($page['highlighted']); ?>
             </div>
           </div> <!-- #highlighted-container -->
