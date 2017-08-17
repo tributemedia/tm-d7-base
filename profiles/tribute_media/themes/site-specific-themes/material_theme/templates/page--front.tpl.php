@@ -1,6 +1,7 @@
 <?php
 // Get variables for company info
 
+
 $street_address = variable_get('co_address', '');
 $city = variable_get('co_city', '');
 $state = variable_get('co_state', '');
