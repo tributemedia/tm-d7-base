@@ -758,7 +758,7 @@ class views_many_to_one_helper {
    */
   public $placeholders = array();
 
-  function __construct(&$handler) {
+  function views_many_to_one_helper(&$handler) {
     $this->handler = &$handler;
   }
 
@@ -1015,11 +1015,15 @@ class views_many_to_one_helper {
       $add_condition = FALSE;
     }
     elseif ($operator == 'or' && empty($options['reduce_duplicates'])) {
+      if (is_array($value) && count($value) == 1) {
+        // Sometimes our single value is array of values.
+        // In such cases, make sure we use IN operator.
+        $value = is_array($value) ? array_pop($value) : $value;
+      }
       if (count($value) > 1) {
         $operator = 'IN';
       }
       else {
-        $value = is_array($value) ? array_pop($value) : $value;
         $operator = '=';
       }
       $add_condition = FALSE;
@@ -1544,9 +1548,9 @@ class views_join {
 
     // Tack on the extra.
     if (isset($this->extra)) {
-      $extras = array();
-      foreach ($this->extra as $info) {
-        if (is_array($info)) {
+      if (is_array($this->extra)) {
+        $extras = array();
+        foreach ($this->extra as $info) {
           $extra = '';
           // Figure out the table name. Remember, only use aliases provided
           // if at all possible.
@@ -1596,18 +1600,18 @@ class views_join {
           }
           $extras[] = "$join_table$info[field] $operator $placeholder";
         }
-        elseif (is_string($info)) {
-          $extras[] = $info;
+
+        if ($extras) {
+          if (count($extras) == 1) {
+            $condition .= ' AND ' . array_shift($extras);
+          }
+          else {
+            $condition .= ' AND (' . implode(' ' . $this->extra_type . ' ', $extras) . ')';
+          }
         }
       }
-
-      if ($extras) {
-        if (count($extras) == 1) {
-          $condition .= ' AND ' . array_shift($extras);
-        }
-        else {
-          $condition .= ' AND (' . implode(' ' . $this->extra_type . ' ', $extras) . ')';
-        }
+      elseif ($this->extra && is_string($this->extra)) {
+        $condition .= " AND ($this->extra)";
       }
     }
 
@@ -1655,12 +1659,11 @@ class views_join_subquery extends views_join {
     $arguments = array();
 
     // Tack on the extra.
-    // This is just copied verbatim from the parent class, which itself has a
-    // bug: http://drupal.org/node/1118100
+    // This is just copied verbatim from the parent class, which itself has a bug: http://drupal.org/node/1118100
     if (isset($this->extra)) {
-      $extras = array();
-      foreach ($this->extra as $info) {
-        if (is_array($info)) {
+      if (is_array($this->extra)) {
+        $extras = array();
+        foreach ($this->extra as $info) {
           $extra = '';
           // Figure out the table name. Remember, only use aliases provided
           // if at all possible.
@@ -1689,18 +1692,18 @@ class views_join_subquery extends views_join {
           $extras[] = "$join_table$info[field] $operator $placeholder";
           $arguments[$placeholder] = $info['value'];
         }
-        elseif (is_string($info)) {
-          $extras[] = $info;
+
+        if ($extras) {
+          if (count($extras) == 1) {
+            $condition .= ' AND ' . array_shift($extras);
+          }
+          else {
+            $condition .= ' AND (' . implode(' ' . $this->extra_type . ' ', $extras) . ')';
+          }
         }
       }
-
-      if ($extras) {
-        if (count($extras) == 1) {
-          $condition .= ' AND ' . array_shift($extras);
-        }
-        else {
-          $condition .= ' AND (' . implode(' ' . $this->extra_type . ' ', $extras) . ')';
-        }
+      elseif ($this->extra && is_string($this->extra)) {
+        $condition .= " AND ($this->extra)";
       }
     }
 
