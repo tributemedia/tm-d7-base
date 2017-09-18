@@ -47,7 +47,10 @@
  *   CSS.
  */
 ?><!DOCTYPE html>
-<html<?php print $rdf_namespaces;?>>
+<html
+lang="en"
+xml:lang="en"
+<?php print $rdf_namespaces;?>>
 <head>
   <link rel="profile" href="<?php print $grddl_profile; ?>" />
   <meta charset="utf-8">
