@@ -312,12 +312,26 @@ html.js fieldset.collapsible .fieldset-legend {
     margin-top: 16px;
 }
 
+.region-content .content .field-name-body img{padding:10px;}
+.region-content .content .field-name-body img.float{max-width:50%;}
+.region-content .content .field-name-body img.float.right{float:right;}
+.region-content .content .field-name-body img.float.left{float:left;}
+.page-blog .view-blog .item-list .views-row,.page-news .view-news .item-list .views-row{padding:0;margin:10px;}
+.sharethis-buttons{margin-bottom:15px;}
+.tabs.primary{background-color:transparent;z-index:50;}
+.tabs.primary li a{z-index:90;}
+.flexslider {border:0;top:-2px;}
+.hero-banner-text {position:absolute;z-index:75;width:100%;} /** block attribute module must be installed and class added to the hero banner text block **/
+
 /* ================================== */
 /* =     Media Queries              = */
 /* ================================== */
 
 
 @media only screen and (max-width : 600px) {
+	.region-content .content .field-name-body img.float{max-width:100% !important;width:100% !important;}
+	.region-content .content .field-name-body img.float.right{float:none !important;}
+	.region-content .content .field-name-body img.float.left{float:none !important;}
 }
 
 @media only screen and (min-width : 601px) {
