@@ -23,35 +23,35 @@ function company_info_form_system_site_information_settings_alter(&$form, &$form
     '#type' => 'textfield',
     '#title' => t('Street Address'),
     '#maxlength' => 128,
-    '#default_value' => variable_get('co_address', ''),
+    '#default_value' => variable_get('co_address', '123 Main Street'),
     '#required' => TRUE,
   );
   $form['company_info']['co_city'] = array(
     '#type' => 'textfield',
     '#title' => t('City'),
     '#maxlength' => 128,
-    '#default_value' => variable_get('co_city', ''),
+    '#default_value' => variable_get('co_city', 'Anytown'),
     '#required' => TRUE,
   );
   $form['company_info']['co_state'] = array(
     '#type' => 'textfield',
     '#title' => t('State/Province'),
     '#maxlength' => 128,
-    '#default_value' => variable_get('co_state', ''),
+    '#default_value' => variable_get('co_state', 'State'),
     '#required' => TRUE,
   );
   $form['company_info']['co_zip'] = array(
     '#type' => 'textfield',
     '#title' => t('Postal Code'),
     '#maxlength' => 10,
-    '#default_value' => variable_get('co_zip', ''),
+    '#default_value' => variable_get('co_zip', '90909'),
     '#required' => TRUE,
   );
   $form['company_info']['co_phone'] = array(
     '#type' => 'textfield',
     '#title' => t('Phone Number'),
     //'#maxlength' => 12,
-    '#default_value' => variable_get('co_phone', ''),
+    '#default_value' => variable_get('co_phone', '888-828-8282'),
     '#required' => TRUE,
   );
   $form['company_info']['co_phone2'] = array(
