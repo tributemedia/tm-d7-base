@@ -84,6 +84,7 @@ dependencies[] = site_verify
 dependencies[] = token
 dependencies[] = userprotect
 dependencies[] = company_info
+debendencies[] = block_attributes
 ; Pantheon
 dependencies[] = pantheon_api
 dependencies[] = pantheon_login
