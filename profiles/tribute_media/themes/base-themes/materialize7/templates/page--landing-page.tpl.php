@@ -224,7 +224,7 @@ if ($powered_by == '1') {
         </section>
       <?php endif; ?>
 
-<footer  class="wrapper clearfix">
+<footer  class="footer wrapper clearfix">
 	<div id="footer-wrapper">
 		<!-- <div class="inner"> -->
 		<?php if ($page['footer']): ?>
@@ -237,7 +237,7 @@ if ($powered_by == '1') {
 				<div>&copy;<?php echo date("Y");?>&nbsp;</div>
 				<div itemprop="name"><?php print $site_name; ?></div>
 			</div>
-			<div class="pipe">&nbsp;&nbsp;|&nbsp;&nbsp;</div>
+			
 			<div class="connect">
 				<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
 					<div itemprop="streetAddress"><?php print $street_address; ?></div>

@@ -174,11 +174,12 @@ function tribute_media_install() {
   
   // Create homepage node
   $ts_user = user_load_by_name('Tech Support');
+  $hp_title = variable_get('site_name', 'Home Page');
   
   $node = entity_create('node', array('type' => 'page'));
   $node->uid = $ts_user->uid;
   $ewrapper = entity_metadata_wrapper('node', $node);
-  $ewrapper->title = 'Home Page';
+  $ewrapper->title = $hp_title;
   $ewrapper->save();
   $nid = $ewrapper->getIdentifier();
   
