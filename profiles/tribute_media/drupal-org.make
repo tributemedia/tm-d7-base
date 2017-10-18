@@ -169,3 +169,9 @@ projects[webform_validation][subdir] = "contrib"
 projects[xmlsitemap][version] = "2.3"
 projects[xmlsitemap][subdir] = "contrib"
 
+; ++++++ Libraries ++++++
+
+libraries[flexslider][download][type] = "get"
+libraries[flexslider][download][url] = "https://github.com/woothemes/FlexSlider/zipball/master"
+libraries[flexslider][directory_name] = "flexslider"
+libraries[flexslider][type] = "library"
