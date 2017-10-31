@@ -37,11 +37,14 @@ projects[hook_post_action_bmm][subdir] = "contrib"
 projects[features][version] = "2.10"
 projects[features][subdir] = "contrib"
 
-projects[uuid_features][version] = "1.0-rc1"
-projects[uuid_features][subdir] = "contrib"
+projects[tm_content_types][version] = "1.0"
+projects[tm_content_types][subdir] = "contrib"
 
-projects[features_extra][version] = "1.0"
-projects[features_extra][subdir] = "contrib"
+projects[tm_menus][version] = "1.0"
+projects[tm_menus][subdir] = "contrib"
+
+projects[tm_roles][version] = "1.0"
+projects[tm_roles][subdir] = "contrib"
 
 projects[addressfield][version] = "1.2"
 projects[addressfield][subdir] = "contrib"
@@ -70,20 +73,11 @@ projects[references][subdir] = "contrib"
 projects[viewreference][version] = "3.5"
 projects[viewreference][subdir] = "contrib"
 
-projects[flexslider][version] = "2.0-rc1"
-projects[flexslider][subdir] = "contrib"
-
-projects[flexslider_views_slideshow][version] = "2.x-dev"
-projects[flexslider_views_slideshow][subdir] = "contrib"
-
 projects[imce][version] = "1.10"
 projects[imce][subdir] = "contrib"
 
 projects[metatags_quick][version] = "2.9"
 projects[metatags_quick][subdir] = "contrib"
-
-projects[block_attributes][version] = "1.0"
-projects[block_attributes][subdir] = "contrib"
 
 projects[entity][version] = "1.8"
 projects[entity][subdir] = "contrib"
@@ -136,6 +130,15 @@ projects[page_title][subdir] = "contrib"
 projects[sharethis][version] = "2.12"
 projects[sharethis][subdir] = "contrib"
 
+projects[skinr][version] = "2.0"
+projects[skinr][subdir] = "contrib"
+
+projects[captcha][version] = "1.4"
+projects[captcha][subdir] = "contrib"
+
+projects[recaptcha][version] = "2.2"
+projects[recaptcha][subdir] = "contrib"
+
 projects[google_analytics][version] = "2.3"
 projects[google_analytics][subdir] = "contrib"
 
@@ -144,9 +147,6 @@ projects[styles][subdir] = "contrib"
 
 projects[taxonomy_manager][version] = "1.0"
 projects[taxonomy_manager][subdir] = "contrib"
-
-projects[uuid][version] = "1.0"
-projects[uuid][subdir] = "contrib"
 
 projects[ckeditor][version] = "1.17"
 projects[ckeditor][subdir] = "contrib"
@@ -160,9 +160,6 @@ projects[jquery_update][subdir] = "contrib"
 projects[views][version] = "3.16"
 projects[views][subdir] = "contrib"
 
-projects[views_slideshow][version] = "3.8"
-projects[views_slideshow][subdir] = "contrib"
-
 projects[webform][version] = "4.15"
 projects[webform][subdir] = "contrib"
 
@@ -172,26 +169,9 @@ projects[webform_validation][subdir] = "contrib"
 projects[xmlsitemap][version] = "2.3"
 projects[xmlsitemap][subdir] = "contrib"
 
-; +++++ Libraries +++++
+; ++++++ Libraries ++++++
 
-; CKEditor
-libraries[ckeditor][directory_name] = "ckeditor"
-libraries[ckeditor][type] = "library"
-libraries[ckeditor][destination] = "libraries"
-libraries[ckeditor][download][type] = "get"
-libraries[ckeditor][download][url] = "http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.6.6.1/ckeditor_3.6.6.1.tar.gz"
-
-; ColorBox
-libraries[colorbox][directory_name] = "colorbox"
-libraries[colorbox][type] = "library"
-libraries[colorbox][destination] = "libraries"
-libraries[colorbox][download][type] = "get"
-libraries[colorbox][download][url] = "https://github.com/jackmoore/colorbox/archive/master.zip"
-
-; Flexslider
+libraries[flexslider][download][type] = "get"
+libraries[flexslider][download][url] = "https://github.com/woothemes/FlexSlider/zipball/master"
 libraries[flexslider][directory_name] = "flexslider"
 libraries[flexslider][type] = "library"
-libraries[flexslider][destination] = "libraries"
-libraries[flexslider][download][type] = "get"
-libraries[flexslider][download][url] = "https://github.com/woothemes/FlexSlider/archive/flexslider1.zip"
-
