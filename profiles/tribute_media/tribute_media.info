@@ -52,8 +52,6 @@ dependencies[] = devel
 ; Drupal
 dependencies[] = hook_post_action
 dependencies[] = hook_post_action_bmm
-; Features extra
-dependencies[] = fe_block
 ; Fields
 dependencies[] = addressfield
 dependencies[] = email
@@ -65,10 +63,6 @@ dependencies[] = maxlength
 dependencies[] = node_reference
 dependencies[] = references
 dependencies[] = viewreference
-; FlexSlider
-dependencies[] = flexslider
-dependencies[] = flexslider_views
-dependencies[] = flexslider_views_slideshow
 ; Media
 dependencies[] = imce
 ; Menus
@@ -76,8 +70,6 @@ dependencies[] = better_mm
 ; Meta tags (quick)
 dependencies[] = metatags_quick
 ; Other
-dependencies[] = company_info
-debendencies[] = block_attributes
 dependencies[] = entity
 dependencies[] = feed_path_publisher
 dependencies[] = libraries
@@ -91,6 +83,8 @@ dependencies[] = scheduler
 dependencies[] = site_verify
 dependencies[] = token
 dependencies[] = userprotect
+dependencies[] = company_info
+debendencies[] = block_attributes
 ; Pantheon
 dependencies[] = pantheon_api
 dependencies[] = pantheon_login
@@ -98,6 +92,9 @@ dependencies[] = pantheon_login
 dependencies[] = page_title
 ; Sharing
 dependencies[] = sharethis
+; Skinr
+dependencies[] = skinr
+dependencies[] = skinr_ui
 ; Statistics
 dependencies[] = googleanalytics
 ; Styles
@@ -105,15 +102,12 @@ dependencies[] = styles
 dependencies[] = styles_ui
 ; Taxonomy
 dependencies[] = taxonomy_manager
-; UUID
-dependencies[] = uuid
 ; User interface
 dependencies[] = ckeditor
 dependencies[] = extlink
 dependencies[] = jquery_update
 ; Views
 dependencies[] = views
-dependencies[] = views_slideshow
 dependencies[] = views_ui
 ; Webform
 dependencies[] = webform
@@ -125,4 +119,10 @@ dependencies[] = xmlsitemap_engines
 dependencies[] = xmlsitemap_node
 ; Features
 dependencies[] = features
-dependencies[] = uuid_features
+dependencies[] = tm_roles
+dependencies[] = tm_content_types
+dependencies[] = tm_menus
+dependencies[] = tm_text_formats
+dependencies[] = tm_blocks
+; Features Extra
+dependencies[] = fe_block
