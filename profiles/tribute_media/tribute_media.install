@@ -196,11 +196,7 @@ function tribute_media_install() {
   
   // revert features to ensure they are all installed
   $features = array(
-    'tm_content_types',
-    'tm_menus',
-    'tm_roles',
-    'tm_text_formats',
-    'tm_blocks',
+    '',
   );
   features_revert($features);
   // ignore any rebuild messages
