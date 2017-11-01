@@ -6,7 +6,7 @@
  */
 function tribute_media_install() {
   // Enable some tribute_media blocks.
-  $default_theme = 'material_theme';
+  $default_theme = 'materialize7';
   $admin_theme = 'seven';
   // disable all themes
   db_update('system')
@@ -105,11 +105,6 @@ function tribute_media_install() {
       'link_title' => st('Manage Menus'),
       'weight' => -12,
     ),
-    array(
-      'link_path' => 'apoyo',
-      'link_title' => st('Support'),
-      'weight' => -7,
-    ),
   );
   shortcut_set_save($shortcut_set);
   // Update the menu router information.
@@ -185,9 +180,6 @@ function tribute_media_install() {
   
   variable_set('site_frontpage', 'node/' . $nid);
   
-  // Create Contact webform
-  variable_set('webform_node_landing_page', 1);
-  
   // Configure External Links
   variable_set('extlink_class', 0);
   
@@ -196,11 +188,7 @@ function tribute_media_install() {
   
   // revert features to ensure they are all installed
   $features = array(
-    'tm_content_types',
-    'tm_menus',
-    'tm_roles',
-    'tm_text_formats',
-    'tm_blocks',
+    '',
   );
   features_revert($features);
   // ignore any rebuild messages
