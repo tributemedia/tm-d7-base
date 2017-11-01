@@ -63,6 +63,10 @@ dependencies[] = maxlength
 dependencies[] = node_reference
 dependencies[] = references
 dependencies[] = viewreference
+; FlexSlider
+dependencies[] = flexslider
+dependencies[] = flexslider_views
+dependencies[] = flexslider_views_slideshow
 ; Media
 dependencies[] = imce
 ; Menus
@@ -92,9 +96,6 @@ dependencies[] = pantheon_login
 dependencies[] = page_title
 ; Sharing
 dependencies[] = sharethis
-; Skinr
-dependencies[] = skinr
-dependencies[] = skinr_ui
 ; Statistics
 dependencies[] = googleanalytics
 ; Styles
@@ -102,12 +103,15 @@ dependencies[] = styles
 dependencies[] = styles_ui
 ; Taxonomy
 dependencies[] = taxonomy_manager
+; UUID
+dependencies[] = uuid
 ; User interface
 dependencies[] = ckeditor
 dependencies[] = extlink
 dependencies[] = jquery_update
 ; Views
 dependencies[] = views
+dependencies[] = views_slideshow
 dependencies[] = views_ui
 ; Webform
 dependencies[] = webform
@@ -119,10 +123,6 @@ dependencies[] = xmlsitemap_engines
 dependencies[] = xmlsitemap_node
 ; Features
 dependencies[] = features
-dependencies[] = tm_roles
-dependencies[] = tm_content_types
-dependencies[] = tm_menus
-dependencies[] = tm_text_formats
-dependencies[] = tm_blocks
+dependencies[] = uuid_features
 ; Features Extra
 dependencies[] = fe_block
