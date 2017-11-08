@@ -96,7 +96,7 @@
             <?php $username=$user->name; ?>
     <?php print t("Posted by"); ?>
     <?php print $username ?> on 
-    <time pubdate datetime="<?php print $submitted_pubdate; ?>">
+    <time pubdate datetime="<?php print $node->created; ?>">
     <?php $date = date("F j", $node->created); ?>
     <?php $yr = date("Y", $node->created); ?>
     <?php print "".$date.", ".$yr; ?>
