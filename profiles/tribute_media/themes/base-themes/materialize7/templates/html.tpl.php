@@ -65,13 +65,11 @@ xml:lang="en"
   <?php print $scripts; ?>
   <script>
   jQuery(document).ready(function($){
-  var deviceAgent = navigator.userAgent.toLowerCase();
-  var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
-      if (agentID) {
- 
-  	$('html').addClass('ios');
-
-      }
+    var deviceAgent = navigator.userAgent.toLowerCase();
+    var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
+    if (agentID) {
+  	  $('html').addClass('ios');
+    }
   });</script>
 </head>
 <body class="<?php print $classes; ?>">
