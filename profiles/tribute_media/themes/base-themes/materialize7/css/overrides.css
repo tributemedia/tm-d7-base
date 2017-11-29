@@ -338,6 +338,20 @@ nav ul a:hover {
 	left:300px;
 }
 
+ul.mega-menu {
+	background-color:transparent;
+}
+
+ul.mega-menu ul {
+	width:325px;
+}
+
+ul.mega-menu ul.wide {
+	left:-100px;
+	padding-left:200px;
+	width:500px;
+}
+
 /*---------- Secondary Menu --------------*/
 
 .secondary-menu-wrapper {
@@ -999,6 +1013,11 @@ label {
 	font-size:1.1rem;
 }
 
+a.button {
+	-webkit-transition: all 0.5s ease-in-out;  /* Android 2.1+, Chrome 1-25, iOS 3.2-6.1, Safari 3.2-6  */
+	transition: all 0.5s ease-in-out; 
+}
+
 /*---------- Icons ------------------------*/
 
 .rssFeed {
@@ -1428,14 +1447,17 @@ ol.flex-control-nav.flex-control-paging {
 /* look at social read me for code to html this work */
 
 ul#social-links {
-	padding:0;
-	margin:15px 0 0 0;
+	float:left;
+	padding: 5px 0px 0px 0px;
+	margin:0px;
 }
 
 ul#social-links li {
-	list-style-type:none;
-	display:inline-block;
+	list-style:none;
+	display:inline;
 }
+
+
 
 /*---------- Social Colors --------------*/
   
