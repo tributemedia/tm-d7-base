@@ -338,6 +338,42 @@ nav ul a:hover {
 	left:300px;
 }
 
+/*---------- Secondary Menu --------------*/
+
+.secondary-menu-wrapper {
+	text-align:right;
+	float:right;
+}
+
+ul#secondary-menu {
+	float:left;
+	padding:0px;
+	margin:0px;
+}
+
+ul#secondary-menu li {
+	display:inline;
+	list-style:none;
+}
+
+ul#secondary-menu li a {
+	display:inline-block;
+	padding:10px;
+	border-bottom:0px solid transparent;
+	-webkit-transition: all 0.2s ease-in-out; 
+	-moz-transition: all 0.2s ease-in-out; 
+	-o-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+ul#secondary-menu li a:hover {
+	padding:10px;
+	-webkit-transition: all 0.2s ease-in-out; 
+	-moz-transition: all 0.2s ease-in-out; 
+	-o-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
 /*---------- Breadcrumb ------------------*/
 
 .breadcrumb:before {
@@ -840,6 +876,11 @@ input[type="text"]:focus:not([readonly]), input[type="password"]:focus:not([read
 
 [type="checkbox"]:checked + label::before {
 	border-color:transparent #444 #444 transparent;
+}
+
+[type="radio"]:checked+label:after {
+    border: 2px solid #444444;
+    background-color: #444444;
 }
 
 .with-gap[type="radio"]:checked + label::before {
@@ -1864,8 +1905,8 @@ div.contextual-links-active a.contextual-links-trigger {
 	.d7.side-by-side form, .d8.side-by-side form {
 		width:50%;
 		float:left;
-		padding:20px;
-		margin-top:20px;
+  	padding: 0px 20px 20px 20px;
+  	margin-top: 0px;
 	}
 }
 
