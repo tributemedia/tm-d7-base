@@ -6,7 +6,7 @@
  */
 function tribute_media_install() {
   // Enable some tribute_media blocks.
-  $default_theme = 'material_theme';
+  $default_theme = 'materialize7';
   $admin_theme = 'seven';
   // disable all themes
   db_update('system')
@@ -195,17 +195,17 @@ function tribute_media_install() {
   variable_set('clean_url', 1);
   
   // revert features to ensure they are all installed
-  $features = array(
-    'tm_content_types',
-    'tm_menus',
-    'tm_roles',
-    'tm_text_formats',
-    'tm_blocks',
-  );
-  features_revert($features);
-  // ignore any rebuild messages
-  node_access_needs_rebuild(FALSE);
-  // ignore any other install messages
-  drupal_get_messages();
+  // $features = array(
+//     'tm_content_types',
+//     'tm_menus',
+//     'tm_roles',
+//     'tm_text_formats',
+//     'tm_blocks',
+//   );
+//   features_revert($features);
+//   // ignore any rebuild messages
+//   node_access_needs_rebuild(FALSE);
+//   // ignore any other install messages
+//   drupal_get_messages();
   
 }
