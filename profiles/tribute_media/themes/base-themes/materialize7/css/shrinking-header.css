@@ -14,8 +14,7 @@
 
 
 
-header,
-.top-wrapper.wo-navigation {
+header#header-wrapper, .top-wrapper.wo-navigation {
   height:170px; /* this needs to be same px as margin-top in header.shrink */
   background:#fff;
 }
