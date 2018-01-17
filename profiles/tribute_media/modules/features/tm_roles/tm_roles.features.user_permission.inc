@@ -49,15 +49,6 @@ function tm_roles_user_default_permissions() {
     'module' => 'contextual',
   );
 
-  // Exported permission: 'access devel information'.
-  $permissions['access devel information'] = array(
-    'name' => 'access devel information',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-    ),
-    'module' => 'devel',
-  );
-
   // Exported permission: 'access own webform results'.
   $permissions['access own webform results'] = array(
     'name' => 'access own webform results',
@@ -736,7 +727,9 @@ function tm_roles_user_default_permissions() {
   // Exported permission: 'edit path_based metatags_quick'.
   $permissions['edit path_based metatags_quick'] = array(
     'name' => 'edit path_based metatags_quick',
-    'roles' => array(),
+    'roles' => array(
+      'Tech Support' => 'Tech Support',
+    ),
     'module' => 'metatags_quick',
   );
 
@@ -773,15 +766,6 @@ function tm_roles_user_default_permissions() {
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'webform',
-  );
-
-  // Exported permission: 'execute php code'.
-  $permissions['execute php code'] = array(
-    'name' => 'execute php code',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-    ),
-    'module' => 'devel',
   );
 
   // Exported permission: 'generate features'.
@@ -918,15 +902,6 @@ function tm_roles_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'shortcut',
-  );
-
-  // Exported permission: 'switch users'.
-  $permissions['switch users'] = array(
-    'name' => 'switch users',
-    'roles' => array(
-      'Tech Support' => 'Tech Support',
-    ),
-    'module' => 'devel',
   );
 
   // Exported permission: 'use PHP for tracking visibility'.
