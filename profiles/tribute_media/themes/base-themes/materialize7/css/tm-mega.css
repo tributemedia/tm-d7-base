@@ -65,6 +65,9 @@ ul.mega-menu ul.wide{left:-100px;padding-left:200px;width:500px;background-image
 
 /*------- mobile menu ---------*/
 
+#nav-mobile li {
+  position: relative;
+}
 .nav-button {position:absolute;top:0;right:15px;}
 .nav-button a {color:#444;}
 .nav-button a:hover {color:#111;}
