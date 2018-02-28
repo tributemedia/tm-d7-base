@@ -142,7 +142,7 @@ if ($powered_by == '1') {
         <?php endif; ?>
         </div>
       </div><!-- #content-area-wrapper -->
-
+      <a id="main-content"></a>
       <?php if ($page['postscript']): ?>
         <section id="postscript-wrapper" class="preface-wrapper wrapper">
           <div class="inner">
