@@ -21,7 +21,7 @@
         	    var $target = $(target);
 
               $('html, body').stop().animate({
-                   'scrollTop': $target.offset().top - $(“.top-wrapper.wo-navigation”).height()
+                   'scrollTop': $target.offset().top - $('.top-wrapper.wo-navigation').height()
               }, 900, 'swing');
         	});
         });
