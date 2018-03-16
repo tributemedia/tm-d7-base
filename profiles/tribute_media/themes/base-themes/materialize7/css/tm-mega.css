@@ -122,6 +122,13 @@ ul.side-nav .side-nav-footer a, ul.side-nav .side-nav-footer a:hover {color:#fff
 
 #sidenav-overlay {background-color:rgba(0,0,0,.88);}
 
+/* Secondary Menu */
+#social-links li a {
+    line-height: 0;
+    font-size: 0;
+    color: transparent;
+}
+
 /* this displays the mobile menu on iPad Pro */
 @media only screen and (min-width : 992px) {
 .ios .page-inner, .ios .page-inner.shrink {padding-top:0;}
