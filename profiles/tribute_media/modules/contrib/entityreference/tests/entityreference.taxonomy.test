@@ -112,7 +112,6 @@ class EntityReferenceTaxonomyTestCase extends DrupalWebTestCase {
     $this->assertFalse(taxonomy_select_nodes(1));
   }
 
-<<<<<<< HEAD
   /**
    * Add a second ER field from node/article to taxonomy.
    *
@@ -161,6 +160,4 @@ class EntityReferenceTaxonomyTestCase extends DrupalWebTestCase {
 
     $this->assertEqual(taxonomy_select_nodes($tid), array($node->nid));
   }
-=======
->>>>>>> core-update
 }
