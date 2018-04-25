@@ -163,6 +163,7 @@ function entityreference_update_7002() {
     ));
   }
 }
+<<<<<<< HEAD
 
 /**
  * Implements hook_update_N().
@@ -188,3 +189,5 @@ function entityreference_update_7100() {
     db_rename_table('taxonomy_index_tmp', 'taxonomy_index');
   }
 }
+=======
+>>>>>>> core-update

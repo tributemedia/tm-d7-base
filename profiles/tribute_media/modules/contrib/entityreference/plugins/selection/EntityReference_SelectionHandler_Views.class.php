@@ -9,6 +9,7 @@ class EntityReference_SelectionHandler_Views implements EntityReference_Selectio
    * Implements EntityReferenceHandler::getInstance().
    */
   public static function getInstance($field, $instance = NULL, $entity_type = NULL, $entity = NULL) {
+<<<<<<< HEAD
     return new EntityReference_SelectionHandler_Views($field, $instance, $entity);
   }
 
@@ -16,6 +17,14 @@ class EntityReference_SelectionHandler_Views implements EntityReference_Selectio
     $this->field = $field;
     $this->instance = $instance;
     $this->entity = $entity;
+=======
+    return new EntityReference_SelectionHandler_Views($field, $instance);
+  }
+
+  protected function __construct($field, $instance) {
+    $this->field = $field;
+    $this->instance = $instance;
+>>>>>>> core-update
   }
 
   /**
@@ -53,17 +62,21 @@ class EntityReference_SelectionHandler_Views implements EntityReference_Selectio
       );
 
       $default = !empty($view_settings['args']) ? implode(', ', $view_settings['args']) : '';
+<<<<<<< HEAD
       $description = t('Provide a comma separated list of arguments to pass to the view.') . '<br />' . t('This field supports tokens.');
 
       if (!module_exists('token')) {
         $description .= '<br>' . t('Install the <a href="@url">token module</a> to get more tokens and display available once.', array('@url' => 'http://drupal.org/project/token'));
       }
 
+=======
+>>>>>>> core-update
       $form['view']['args'] = array(
         '#type' => 'textfield',
         '#title' => t('View arguments'),
         '#default_value' => $default,
         '#required' => FALSE,
+<<<<<<< HEAD
         '#description' => $description,
         '#maxlength' => '512',
       );
@@ -79,6 +92,10 @@ class EntityReference_SelectionHandler_Views implements EntityReference_Selectio
           '#dialog' => TRUE,
         );
       }
+=======
+        '#description' => t('Provide a comma separated list of arguments to pass to the view.'),
+      );
+>>>>>>> core-update
     }
     else {
       $form['view']['no_view_help'] = array(
@@ -104,7 +121,10 @@ class EntityReference_SelectionHandler_Views implements EntityReference_Selectio
       return FALSE;
     }
     $this->view->set_display($display_name);
+<<<<<<< HEAD
     $this->view->pre_execute();
+=======
+>>>>>>> core-update
 
     // Make sure the query is not cached.
     $this->view->is_cacheable = FALSE;
@@ -125,7 +145,11 @@ class EntityReference_SelectionHandler_Views implements EntityReference_Selectio
    */
   public function getReferencableEntities($match = NULL, $match_operator = 'CONTAINS', $limit = 0) {
     $display_name = $this->field['settings']['handler_settings']['view']['display_name'];
+<<<<<<< HEAD
     $args = $this->handleArgs($this->field['settings']['handler_settings']['view']['args']);
+=======
+    $args = $this->field['settings']['handler_settings']['view']['args'];
+>>>>>>> core-update
     $result = array();
     if ($this->initializeView($match, $match_operator, $limit)) {
       // Get the results.
@@ -154,7 +178,11 @@ class EntityReference_SelectionHandler_Views implements EntityReference_Selectio
 
   function validateReferencableEntities(array $ids) {
     $display_name = $this->field['settings']['handler_settings']['view']['display_name'];
+<<<<<<< HEAD
     $args = $this->handleArgs($this->field['settings']['handler_settings']['view']['args']);
+=======
+    $args = $this->field['settings']['handler_settings']['view']['args'];
+>>>>>>> core-update
     $result = array();
     if ($this->initializeView(NULL, 'CONTAINS', 0, $ids)) {
       // Get the results.
@@ -187,6 +215,7 @@ class EntityReference_SelectionHandler_Views implements EntityReference_Selectio
 
   }
 
+<<<<<<< HEAD
   /**
    * Handles arguments for views.
    *
@@ -230,6 +259,8 @@ class EntityReference_SelectionHandler_Views implements EntityReference_Selectio
     }
     return $args;
   }
+=======
+>>>>>>> core-update
 }
 
 function entityreference_view_settings_validate($element, &$form_state, $form) {
