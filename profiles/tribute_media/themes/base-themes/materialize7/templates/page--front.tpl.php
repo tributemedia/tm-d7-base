@@ -21,8 +21,8 @@ if ($powered_by == '0') {
   $pb_text = 'powered by Tribute Media ' . l(t('a web marketing agency'), $pb_url, $options);
 }
 if ($powered_by == '1') {
-  $pb_url = 'http://www.dealermarketing.net';
-  $pb_text = 'powered by ' . l(t('Dealer Marketing'), $pb_url, $options);
+  $pb_url = 'http://www.convergomarketing.com';
+  $pb_text = 'powered by ' . l(t('ConverGo'), $pb_url, $options);
 }
 ?>
 
