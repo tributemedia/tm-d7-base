@@ -71,7 +71,7 @@ if ($powered_by == '1') {
                 <div class="inner row">
 
                   <!-- branding -->
-                  <div id="site-info" class="site-info col s11 m3">
+                  <div id="site-info" class="site-info col s12 m4">
                     <div class="inner">
                          <?php if ($logo): ?><div class="logo"><a class="logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a></div> <!-- .logo --><?php endif; ?>
                     </div> <!-- .inner -->
