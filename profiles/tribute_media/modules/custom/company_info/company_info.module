@@ -9,7 +9,7 @@
 function company_info_form_system_site_information_settings_alter(&$form, &$form_state) {
   $poweredby_options = array(
     0 => t('Tribute Media'),
-    1 => t('Dealer Marketing'),
+    1 => t('Convergo'),
   );
   $form['company_info'] = array(
     '#type' => 'fieldset',
