@@ -11,13 +11,6 @@ if(typeof(CKEDITOR) !== 'undefined') {
     CKEDITOR.addStylesSet( 'drupal',
     [
             /* Block Styles */
-      
-    { name : 'Button 1', 
-      element : 'p', 
-      attributes: 'class' : 'button' },
-    { name : 'Button 2', 
-      element : 'p', 
-      attributes: 'class' : 'button button-2' },
 
             // These styles are already available in the "Format" drop-down list, so they are
             // not needed here by default. You may enable them to avoid placing the
