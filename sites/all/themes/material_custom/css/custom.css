@@ -1,0 +1,456 @@
+/***********************************************************/
+/* This file should contain all site specific/custom CSS.  */
+/***********************************************************/
+
+/*
+
+1. don't rename this theme.
+2. When working on your new theme, just delete / or update the css below for the new theme
+3. upload your logo, logo-icon and your screenshot into this theme folder
+4. ensure that this file is clearly commented and organized
+
+
+Overview:
+
+1. build theme on the theme building site without editing site
+2. when built as far as theme building site will allow, move theme to client website that will use it.
+3. Make final adjustments to theme on client site
+4. After theme is complete, home page will be complete.
+
+Use this checklist as a guideline:
+
+
+* Do not log into site. Theming should not require editing template files. If it does, please ask your supervisor
+* Using logo from home page mockup. Upload logo.png in the theme folder
+* Upload the logo-icon.png in the theme folder
+* Edit typography to match home page mockup requirements
+* Edit colors for header/footer to match home page mockup requirements
+* Edit link colors
+* Go to the blog page and theme the two sidebar blocks to match the home page direction. Spend as minimal time as possible and keep your theming specific to sidebar (use .region-sidebar-second) 
+* create a screen shot of the home page at 1280 x 800. label as screenshot.png and add to the root of the theme. Use the about page or the home page.
+* download the theme from here and upload the website that will use it. enable the theme there and verify that it applies the theme as you intend.
+* adjust theme elements that are not applied to blocks installed on the website that will use this theme.
+* after your theme is added to the website that will use it, please delete these instructions
+
+*/
+
+/* ============== */
+/* = Typography = */
+/* ============== */
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+h1,h2,h3,h4,h5,h6 {font-family: 'Lato', sans-serif; font-weight:700; color:#222222;}
+
+h1 {
+	padding-bottom:5px;
+	text-transform:uppercase;
+}
+
+h2 {
+	padding-top:0px;
+}
+
+strong {
+	font-weight:bold;
+}
+
+blockquote {
+	border-radius:0px;
+    background-clip: padding-box;
+    border-color: #bbb;
+	border-left: 2px solid #444444;
+}
+
+body {
+	font-size:18px;
+}
+
+hr {
+	height:2px;
+	background:#0c2d4c !important;
+}
+
+/* =========================================================================== */
+/* = add elements here that you recommend should be defaulted for all themes = */
+/* =========================================================================== */
+
+
+
+/* ========== */
+/* = Colors = */
+/* ========== */
+
+a {
+	color:#B50423;
+}
+
+a:hover {
+	color:#91041b;
+}
+
+/* ================= */
+/* = Button Styles = */
+/* ================= */
+
+.page .button,
+a.button,
+.button a {
+	background:#B50423;
+	color:#fff;
+	border-radius:1px;
+	background-clip: padding-box;
+	padding:10px 30px;
+}
+
+.button:hover,
+a.button:hover,
+.button:hover {
+	background:#91041b;
+	color:#fff;
+	border-radius:1px;
+	background-clip: padding-box;
+}
+
+.button.two,
+a.button.two,
+.button.two a {
+	background:#111;
+	color:#ffffff;
+	border-radius:1px;
+	background-clip: padding-box;
+}
+
+.button.two:hover,
+a.button.two:hover,
+.button.two a:hover {
+	background:#666;
+	color:#fff;
+	border-radius:1px;
+	background-clip: padding-box;
+}
+
+.button.two.hero-banner,
+a.button.two.hero-banner {
+	background:#B50423;
+	color:#fff;
+	border-radius:1px;
+	background-clip: padding-box;
+}
+
+.button.two.hero-banner:hover,
+a.button.two.hero-banner:hover {
+	background:#91041b;
+	}
+.more-link.btn, .node-readmore.btn {
+    background: #B50423;
+    padding: 15px 30px;
+    border-radius:1px;
+    height: inherit;
+    line-height: 1em;
+    font-size: 1.25rem;
+}
+
+.more-link.btn:hover, .node-readmore.btn:hover {
+	background:#91041b;
+}
+
+.more-link.btn a, .node-readmore.btn a {
+    color: #ffffff;
+}
+
+/* ========== */
+/* = Header = */
+/* ========== */
+
+.page-inner {
+  padding-top:157px; /* this needs to be same height of header + height of navigation bar - default is 64px plus header height below */
+}
+
+header,
+.top-wrapper.wo-navigation {
+  height:98px; /* this needs to be same px as .page-inner less navigation (navigation is 64px) */
+  background:#fff;
+}
+
+@media only screen and (max-width : 600px) {
+  .page-inner, .page-inner.shrink{padding-top:0;}
+}
+
+@media only screen and (min-width : 601px) and (max-width : 992px) {
+  .page-inner, .page-inner.shrink{padding-top:0;}
+}
+
+/* ================ */
+/* = Menu Styling = */
+/* ================ */
+
+.shrink .shrinking-icon {
+    top: 4px;
+}
+
+nav {
+	height:auto;
+	line-height:inherit;
+}
+
+ul.mega-menu {
+	background:transparent;
+}
+
+#mega-menu-container > .inner.row {
+	margin-bottom:0px;
+}
+
+ul#secondary-menu li a {
+	color:#222;
+	text-transform:uppercase;
+}
+
+ul#secondary-menu li a:hover {
+	color:#666;
+}
+
+#mega-menu-wrapper,
+ul.mega-menu ul,
+ul.mega-menu ul ul,
+ul.mega-menu ul ul ul {
+	background:#111;
+	text-transform:uppercase;
+}
+
+ul.mega-menu li {
+	padding:0px 15px;
+}
+
+ul.mega-menu li:hover {
+    background-color:rgba(255,255,255,.05);
+}
+
+ul.mega-menu a {
+	font-weight:400;
+	font-size: 1rem;
+	padding: 15px 0px 15px 0px;
+	text-transform:uppercase;
+	color:#ffffff;
+	-moz-transition: all 0.2s ease-in-out; 
+	-o-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+ul.mega-menu a:hover {
+	color:#fff;
+	-moz-transition: all 0.2s ease-in-out; 
+	-o-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+ul.mega-menu ul li {
+	padding:0px;
+}
+
+ul.mega-menu ul a {
+    font-size: 1rem
+}
+
+ul.mega-menu ul a:hover {
+	color:#fff;
+}
+
+/* ======================= */
+/* = Hero Banner Styling = */
+/* ======================= */
+
+/** must add class "hero-banner-text" to block above hero-banner-background-slideshow
+    must add class "hero-banner-background-slideshow" to the view block **/
+/* hero banner text */
+
+.region-preface {position:relative;}
+
+.hero-banner-text {
+	margin:40px 0;
+	color:#000;
+}
+
+.hero-banner-block-content-wrapper {
+	    background-color:rgba(255,255,255,.30);
+}
+
+.hero-banner-block-content {
+	/* this is in a .container */
+	color: #ffffff;
+	background-color: transparent;
+	padding:20px;
+	text-align:center;
+ }
+
+.hero-banner-text .content h1 {
+	font-size: 4.5vw;
+	margin-bottom: 0px;
+	color: #111;
+	text-transform: uppercase;
+	padding-bottom: 0px;
+}
+
+.hero-banner-text .content p {
+	font-size: 1.5vw;
+	color: #111;
+	text-transform: uppercase;
+	margin: 0px 0px 20px;
+}
+
+/* hero banner slideshow background */
+
+.hero-banner-background-slideshow {
+	max-height:600px;
+	min-height:300px;
+	overflow:hidden;
+	background:#111
+}
+
+.hero-banner-background-slideshow .flex-control-nav, .hero-banner-background-slideshow .flex-direction-nav {display:none;} /*** can conflict with the .hero-banner-text block. Only show if you've properly tested ***/
+
+@media only screen and (max-width : 600px) {
+	.hero-banner-background-slideshow {
+		width:180%;
+		position:relative;
+		left:-30px;
+		/* this allows the hero banner slide to be bigger as a backgound on mobile devices 
+		    adjust the width and left if you need more vertical height */
+	}
+}
+
+/* =================== */
+/* = Preface Styling = */
+/* =================== */
+
+#preface > .inner.row {
+	margin-bottom:0px;
+}
+
+/* ========================== */
+/* = right sidebar themeing = */
+/* ========================== */
+
+aside.sidebar-second {
+	
+}
+
+.region-sidebar-second h2 {
+	
+}
+
+.region-sidebar-second #block-views-blog-block {
+	
+}
+
+/* ===================== */
+/* = Postscript region = */
+/* ===================== */
+
+#postscript-wrapper {
+	padding-top:25px;
+}
+
+/* ========== */
+/* = Footer = */
+/* ========== */
+
+footer.footer {
+    background: #111;
+    padding-top: 30px;
+    padding-bottom: 30px;
+	font-size:95%;
+}
+
+footer.footer h1,
+footer.footer h1.title,
+footer.footer h2,
+footer.footer h2.title,
+footer.footer h2 a,
+footer.footer h3,
+footer.footer h4,
+footer.footer h5,
+footer.footer h6,
+footer.footer div,
+footer.footer p,
+footer.footer ol,
+footer.footer ul,
+footer.footer dl,
+footer.footer blockquote,
+footer.footer fieldset,
+footer.footer label,
+footer.footer .caret,
+footer.footer .fieldset-legend{
+	color:#fff;
+}
+
+#copyright-line {
+	text-align:center;
+	padding-right:20px;
+	padding-left:20px;
+	width:100%;
+}
+
+#copyright-line div {
+	text-align:center;
+	display:inline;
+}
+
+.connect {
+	text-align:center;
+}
+
+.connect .pipe {
+	display:block !important;
+	height:0;
+	overflow:hidden;
+}
+
+.connect div {
+	display:inline !important;
+	width:auto;
+	text-align:left;
+}
+
+#copyright-line .connect:first-child {
+	display:block;
+}
+
+#powered-by {
+	width:100%;
+	text-align:center;
+	display:block;
+	padding-left:20px;
+	padding-right:20px;
+	float:right;
+}
+
+/* =============================== */
+/* = Other - please comment well = */
+/* =============================== */
+
+
+/* ================= */
+/* = media queries = */
+/* ================= */
+
+@media only screen and (max-width : 600px) {
+}
+
+@media only screen and (min-width : 601px) {
+}
+
+@media only screen and (max-width: 992px) {
+}
+
+
+@media only screen and (min-width : 993px) {
+	.hero-banner-block-content {
+/*		margin-left: 50%;
+		text-align: left;
+		padding: 0px 0px 0px 30px;
+		margin-right: 0%;
+		width: 50%;*/
+	 }
+}
