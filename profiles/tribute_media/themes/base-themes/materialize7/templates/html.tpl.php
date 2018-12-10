@@ -56,11 +56,6 @@ xml:lang="en"
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <?php print $head; ?>
-  <?php 
-  $name = variable_get('theme_default', NULL);
-  $theme_path = path_to_theme('theme', $name);
-  ?>
-  <link rel="icon" type="image/x-icon" href="<?php print $theme_path; ?>/favicon.ico" />
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
   <!-- HTML5 element support for IE6-8 -->
