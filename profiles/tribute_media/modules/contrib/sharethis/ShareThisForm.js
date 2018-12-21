@@ -104,14 +104,7 @@ var drupal_st = {
 		
 		jQuery(".st_formButtonSave").click(drupal_st.updateOptions);
 
-    var inputEl = jQuery('#st_cns_settings').find('input');
-    // For jQuery >= 1.6
-    if (typeof inputEl.on === 'function') {
-      inputEl.on('click', drupal_st.updateDoNotHash);
-    // For jQuery < 1.6
-    } else {
-      inputEl.live('click', drupal_st.updateDoNotHash);
-    }
+		jQuery('#st_cns_settings').find('input').live('click', drupal_st.updateDoNotHash);
 	},
 	serviceCallback: function() {
 		var services = stlib_picker.getServices("myPicker");
