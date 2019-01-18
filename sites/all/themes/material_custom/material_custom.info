@@ -1,0 +1,33 @@
+name = Material Custom Theme
+description = This theme is used to add site specific theming to the Tribute Media D7 Base upstream sites on Pantheon. This theme requires the material_theme base theme.
+version = 1.0
+core = 7.x
+base theme = materialize7
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Regions
+;;;;;;;;;;;;;;;;;;;;;
+
+regions[help]           = 'Help'
+regions[header]         = 'Header'
+regions[mega_menu]      = 'Mega Menu'
+regions[highlighted]    = 'Highlighted'
+regions[preface]        = 'Preface'
+regions[content]        = 'Content'
+regions[sidebar_second] = 'Right Sidebar'
+regions[postscript]     = 'Postscript'
+regions[footer]         = 'Footer'
+
+;regions[drawer]         = 'Slideout Drawer'
+;see read me for slideout drawer in materialize7 for more information
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Stylesheets
+;;;;;;;;;;;;;;;;;;;;;
+
+stylesheets[all][] = css/custom.css
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Scripts
+;;;;;;;;;;;;;;;;;;;;;
+scripts[] = js/tm_jquery.js
